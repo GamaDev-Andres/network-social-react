@@ -1,0 +1,62 @@
+// variables
+$grisBase: #f0f2f5;
+$grisIcons: #8c8d90;
+$grisPlaceHolder: #75777b;
+$azulBase: #1877f2;
+
+$telefono: 480px;
+$tablet: 768px;
+$portatil: 1100px;
+
+// mixins
+@mixin flexCenter($direction: row, $jc: center, $ai: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $jc;
+  align-items: $ai;
+}
+
+//--- media queries
+@mixin telefono {
+  @media (max-width: $telefono) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (max-width: $desktop) {
+    @content;
+  }
+}
+
+button {
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+input {
+  outline: none;
+  border: none;
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  &:focus {
+    border: 1px solid $azulBase;
+    transition: border 0.3s ease-in-out;
+  }
+  &::placeholder {
+    color: $grisPlaceHolder;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: $azulBase;
+}

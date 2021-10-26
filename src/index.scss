@@ -1,0 +1,10 @@
+@import "./styles/styles";
+@import "./styles/auth";
+
+*,
+*::after,
+::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
