@@ -43,7 +43,6 @@ const Register = () => {
       Swal.fire("Error", "Las contraseñas no coinciden", "error");
       return;
     }
-    Swal.fire("Exito!", "Registro exitoso", "success");
     dispatch(startRegisterWithEmailAndPassword(formValues));
   };
   return (

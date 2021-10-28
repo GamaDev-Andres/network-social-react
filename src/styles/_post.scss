@@ -1,0 +1,47 @@
+.container-all-posts {
+  @include flexCenter(column);
+  gap: 10px;
+}
+
+.container-post {
+  width: 100%;
+  flex-direction: column;
+  gap: 5px;
+  padding: 1rem;
+}
+.header-post {
+  width: 100%;
+  @include flexCenter();
+  gap: 1rem;
+  justify-content: flex-start;
+  .foto-container {
+    width: 30px !important;
+  }
+}
+.footer-post-container {
+  width: 100%;
+  @include flexCenter(column);
+  gap: 10px;
+  .footer-post-indicadores-container {
+    width: 100%;
+    @include flexCenter(row, space-between);
+  }
+  .footer-post-interacciones-container {
+    width: 100%;
+    gap: 10px;
+    @include flexCenter();
+    button {
+      @include flexCenter();
+      gap: 5px;
+      flex-grow: 1;
+      transition: all 0.3s ease-in-out;
+      &:first-of-type:hover {
+        color: $rojoReaccion;
+      }
+      &:hover {
+        color: $azulBase;
+        background-color: darken($grisBase, $amount: 5);
+      }
+    }
+  }
+}

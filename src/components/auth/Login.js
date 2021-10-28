@@ -2,7 +2,7 @@ import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { startLogin } from "../../actions/auth";
+import { startLogin, startLoginWithGoogle } from "../../actions/auth";
 import useForm from "../../hooks/useForm";
 
 const initialForm = {
@@ -20,6 +20,10 @@ const Login = () => {
     e.preventDefault();
 
     dispatch(startLogin(email, password));
+  };
+
+  const handleLoginWithGoogle = () => {
+    dispatch(startLoginWithGoogle());
   };
 
   return (
@@ -52,7 +56,7 @@ const Login = () => {
               />
               <button type="submit">Ingresar</button>
               <div className="btn-icon-container">
-                <button type="button">
+                <button onClick={handleLoginWithGoogle} type="button">
                   <FcGoogle className="icon-google" /> Ingresa con google
                 </button>
               </div>

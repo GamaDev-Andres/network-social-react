@@ -3,6 +3,7 @@ $grisBase: #f0f2f5;
 $grisIcons: #8c8d90;
 $grisPlaceHolder: #75777b;
 $azulBase: #1877f2;
+$rojoReaccion: #f44336;
 
 $telefono: 480px;
 $tablet: 768px;
@@ -59,4 +60,16 @@ input {
 a {
   text-decoration: none;
   color: $azulBase;
+}
+.box {
+  @include flexCenter();
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 1px 2px 7px -2px $grisIcons;
+}
+#container-home {
+  padding: 0 5px;
+}
+body {
+  background-color: $grisBase;
 }

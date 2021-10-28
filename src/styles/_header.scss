@@ -1,0 +1,41 @@
+header {
+  width: 100%;
+  min-height: 50px;
+  background-color: white;
+  margin-top: 5px;
+  margin-bottom: 1rem;
+  .header-container {
+    @include flexCenter();
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    gap: 1rem;
+    .button-posts-container {
+      flex-grow: 1;
+      background-color: $grisBase;
+      padding: 0.625rem 1rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      &:hover {
+        background-color: darken($grisBase, $amount: 5);
+        transition: all 0.3s ease-in;
+      }
+      span {
+        display: block;
+        text-align: center;
+        font-weight: 500;
+        min-width: 100%;
+        color: $grisIcons;
+      }
+    }
+  }
+}
+.foto-container {
+  @include flexCenter();
+  width: 35px;
+  img {
+    object-fit: cover;
+    width: 100%;
+    clip-path: circle(50% at 50% 50%);
+  }
+}

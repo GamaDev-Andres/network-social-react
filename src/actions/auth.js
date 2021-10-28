@@ -2,11 +2,15 @@
 
 import {
   createUserWithEmailAndPassword,
+  GoogleAuthProvider,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
   updateProfile,
 } from "@firebase/auth";
+import Swal from "sweetalert2";
 import { auth } from "../firebase/credentials";
+import { validatorErrors } from "../helpers/codeErrorsValidator";
 import { types } from "../types/types";
 
 export const startRegisterWithEmailAndPassword = (newUser) => {
@@ -23,8 +27,9 @@ export const startRegisterWithEmailAndPassword = (newUser) => {
       });
 
       dispatch(login(user.uid, user.email, user.displayName));
+      Swal.fire("Exito!", "Registro exitoso", "success");
     } catch (error) {
-      console.log(error);
+      validatorErrors(error.code);
     }
   };
 };
@@ -32,16 +37,14 @@ export const startRegisterWithEmailAndPassword = (newUser) => {
 export const startLogin = (email, password) => {
   return async (dispatch) => {
     try {
-      const user = await signInWithEmailAndPassword(auth, email, password);
-      console.log(user);
-      // dispatch(
-      //   login(auth.currentUser.uid, email, auth.currentUser.displayName)
-      // );
+      await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
       console.log(error);
+      validatorErrors(error.code);
     }
   };
 };
+
 export const login = (uid, email, displayName) => ({
   type: types.authLogin,
   payload: {
@@ -50,6 +53,18 @@ export const login = (uid, email, displayName) => ({
     uid,
   },
 });
+
+export const startLoginWithGoogle = () => {
+  const provider = new GoogleAuthProvider();
+  return async () => {
+    try {
+      await signInWithPopup(auth, provider);
+    } catch (error) {
+      console.log(error);
+      validatorErrors(error.code);
+    }
+  };
+};
 
 export const startLogOut = () => {
   return async (dispatch) => {
