@@ -10,7 +10,8 @@ import { login } from "../actions/auth";
 import Login from "../components/auth/Login";
 import PrivateRouter from "./PrivateRouter";
 import PublicRouter from "./PublicRouter";
-import { collection, doc, getDoc, setDoc } from "@firebase/firestore";
+import { doc, getDoc, setDoc } from "@firebase/firestore";
+import userEmpty from "../assets/userEmpty.jpg";
 
 const AppRouter = () => {
   const dispatch = useDispatch();
@@ -29,16 +30,20 @@ const AppRouter = () => {
     };
     // ----------------------------CORREGIR, OPTIMIZAR
     const creandoDocUser = async (user) => {
-      const { uid, displayName, email } = user;
+      const { uid, displayName, email, photoURL } = user;
       const docRef = doc(db, "usuarios", user.email);
-      console.log(docRef);
-      const refCollection = collection(db, `usuarios/${email}/mensajes`);
+      // const refCollection = collection(db, `usuarios/${email}/mensajes`);
       const response = await getDoc(docRef);
       if (!response.exists()) {
-        // setDoc(docRef, { uid, displayName, email });
+        setDoc(docRef, {
+          uid,
+          displayName,
+          email,
+          foto: photoURL === "none" ? userEmpty : photoURL,
+        });
       }
       // collection
-      setDoc(doc(refCollection, email), { hola: uid });
+      // setDoc(doc(refCollection, email), { hola: uid });
     };
 
     observandoAutenticacion();

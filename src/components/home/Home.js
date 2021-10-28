@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
+
 import Header from "../layout/Header";
+import ModalCreatePost from "./posts/ModalCreatePost";
 import Posts from "./posts/Posts";
+
 const defaultPosts = [
   {
     id: "32132322222321",
@@ -47,7 +50,9 @@ const defaultPosts = [
     },
   },
 ];
+
 const Home = () => {
+  useEffect(() => {}, []);
   return (
     <div id="container-home">
       <Header />
@@ -58,6 +63,7 @@ const Home = () => {
           ))}
         </div>
       </main>
+      <ModalCreatePost />
     </div>
   );
 };

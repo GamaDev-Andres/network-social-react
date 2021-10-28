@@ -1,5 +1,4 @@
 // acciones de autenticacion
-
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
@@ -9,6 +8,7 @@ import {
   updateProfile,
 } from "@firebase/auth";
 import Swal from "sweetalert2";
+
 import { auth } from "../firebase/credentials";
 import { validatorErrors } from "../helpers/codeErrorsValidator";
 import { types } from "../types/types";
@@ -24,6 +24,7 @@ export const startRegisterWithEmailAndPassword = (newUser) => {
       );
       await updateProfile(user, {
         displayName: name,
+        photoURL: "none",
       });
 
       dispatch(login(user.uid, user.email, user.displayName));
@@ -56,6 +57,7 @@ export const login = (uid, email, displayName) => ({
 
 export const startLoginWithGoogle = () => {
   const provider = new GoogleAuthProvider();
+
   return async () => {
     try {
       await signInWithPopup(auth, provider);

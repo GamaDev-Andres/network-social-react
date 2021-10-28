@@ -1,10 +1,19 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+
 import { auth } from "../../firebase/credentials";
 import userEmpty from "../../assets/userEmpty.jpg";
+import { openModal } from "../../actions/ui";
+
 const Header = () => {
   const { displayName } = useSelector((state) => state.auth);
   const primerNombre = displayName.split(" ")[0];
+  const dispatch = useDispatch();
+
+  const handleOpenModal = () => {
+    dispatch(openModal());
+  };
 
   return (
     <header className="box">
@@ -15,8 +24,8 @@ const Header = () => {
             alt="muestra tu foto"
           />
         </div>
-        <div className="button-posts-container">
-          <span>¿Que estás pensando, {primerNombre}?</span>
+        <div onClick={handleOpenModal} className="button-posts-container">
+          <span>¿Qué estás pensando, {primerNombre}?</span>
         </div>
       </div>
     </header>

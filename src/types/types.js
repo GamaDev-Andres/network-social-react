@@ -5,4 +5,10 @@ export const types = {
   authStartLogOut: "[auth]  iniciando logout",
   authLogOut: "[auth]  realizando logout",
   authStartLoginGoogle: "[auth] realizando log google",
+
+  uiOpenModal: "[ui] abriendo modal",
+  uiCloseModal: "[ui] cerrando modal",
+
+  postStartCreatePost: "[post] iniciando creacion post",
+  postCreatePost: "[post] creando post",
 };

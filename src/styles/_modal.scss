@@ -1,0 +1,74 @@
+.modal {
+  background: white;
+  border-radius: 5px;
+  color: rgb(51, 51, 51);
+  display: inline;
+  max-height: 95%;
+  max-width: 500px;
+  outline: none;
+  padding: 1rem;
+  overflow-y: scroll;
+  .header-post {
+    .datos-post-container {
+      small {
+        display: none;
+      }
+    }
+  }
+}
+.ReactModal__Overlay {
+  @include flexCenter();
+}
+.ReactModal__Content {
+  position: relative;
+  width: 90%;
+  max-height: 75%;
+  @include flexCenter(column);
+  gap: 1rem;
+}
+.container-title {
+  width: 100%;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $grisIcons;
+  @include flexCenter(row, space-between);
+  h2 {
+    width: 100%;
+    text-align: center;
+  }
+  button {
+    position: absolute;
+    top: 12px;
+    right: 1rem;
+    border-radius: 50%;
+  }
+}
+.container-form-post {
+  width: 100%;
+  @include flexCenter(column);
+  gap: 10px;
+  .form-post {
+    width: 100%;
+    @include flexCenter(column, center, stretch);
+    gap: 1rem;
+    .text-post {
+      min-height: 200px;
+      font-size: 1.25rem;
+      border: none;
+      outline: none;
+      resize: none;
+      &::placeholder {
+        color: $grisPlaceHolder;
+        font-size: 1.25rem;
+      }
+    }
+    button {
+      background-color: $azulBase;
+      color: white;
+      &:disabled {
+        color: black;
+        background-color: $grisBase;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
