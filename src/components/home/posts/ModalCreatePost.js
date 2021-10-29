@@ -7,10 +7,12 @@ import { closeModal } from "../../../actions/ui";
 import useForm from "../../../hooks/useForm";
 import HeaderPost from "./HeaderPost";
 import { startCreatePost } from "../../../actions/posts";
+import { auth } from "../../../firebase/credentials";
 
 Modal.setAppElement("#root");
 
 const ModalCreatePost = () => {
+  const foto = auth.currentUser.photoURL;
   const dispatch = useDispatch();
   const { displayName } = useSelector((state) => state.auth);
   const primerNombre = displayName.split(" ")[0];
@@ -44,7 +46,7 @@ const ModalCreatePost = () => {
           </button>
         </div>
         <div className="container-form-post">
-          <HeaderPost />
+          <HeaderPost user={{ displayName }} foto={foto} />
           <form onSubmit={handleSubmitPost} className="form-post">
             <textarea
               maxLength="256"

@@ -11,4 +11,6 @@ export const types = {
 
   postStartCreatePost: "[post] iniciando creacion post",
   postCreatePost: "[post] creando post",
+  postGetAllPosts: "[post] traer todos los post",
+  postClearPosts: "[post] limpiando posts",
 };

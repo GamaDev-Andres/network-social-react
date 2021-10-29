@@ -45,3 +45,15 @@
     }
   }
 }
+.main-post-container {
+  width: 100%;
+}
+.text-post-container {
+  width: 100%;
+  padding: 1rem 0;
+  p {
+    width: 100%;
+    display: block;
+    // text-align: start;
+  }
+}
