@@ -33,6 +33,7 @@ header {
 .foto-container {
   @include flexCenter();
   width: 35px;
+  cursor: pointer;
   img {
     object-fit: cover;
     width: 100%;

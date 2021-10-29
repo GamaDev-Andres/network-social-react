@@ -1,9 +1,9 @@
-// import { collection, onSnapshot } from "@firebase/firestore";
-// import { db } from "../firebase/credentials";
+import { collection, doc, onSnapshot } from "@firebase/firestore";
+import { db } from "../firebase/credentials";
 
-// // export const mapeoDocsPostsAObjetos=(doc){
-
-// // }
+export const mapeoDocsPostsAObjetos = (arrDocs) => {
+  return arrDocs.map((doc) => ({ ...doc.data(), id: doc.id }));
+};
 
 // export const escucharUltimosPosts=()=>{
 //   const refCollection = collection(db, `usuarios`);

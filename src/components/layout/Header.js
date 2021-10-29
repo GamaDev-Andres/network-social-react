@@ -5,20 +5,25 @@ import { useDispatch } from "react-redux";
 import { auth } from "../../firebase/credentials";
 import userEmpty from "../../assets/userEmpty.jpg";
 import { openModal } from "../../actions/ui";
+import { useHistory } from "react-router";
 
 const Header = () => {
-  const { displayName } = useSelector((state) => state.auth);
+  const { displayName, uid } = useSelector((state) => state.auth);
   const primerNombre = displayName.split(" ")[0];
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleOpenModal = () => {
     dispatch(openModal());
   };
 
+  const handleRedirectMyProfile = () => {
+    history.push(`/perfil/${uid}`);
+  };
   return (
     <header className="box">
       <div className="header-container">
-        <div className="foto-container">
+        <div onClick={handleRedirectMyProfile} className="foto-container">
           <img
             src={auth.currentUser.photoURL || userEmpty}
             alt="muestra tu foto"

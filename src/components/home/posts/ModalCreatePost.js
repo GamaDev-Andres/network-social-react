@@ -14,7 +14,7 @@ Modal.setAppElement("#root");
 const ModalCreatePost = () => {
   const foto = auth.currentUser.photoURL;
   const dispatch = useDispatch();
-  const { displayName } = useSelector((state) => state.auth);
+  const { displayName, uid } = useSelector((state) => state.auth);
   const primerNombre = displayName.split(" ")[0];
   const { openModal } = useSelector((state) => state.ui);
   const [formValues, setFormValue, reset] = useForm({ texto: "" });
@@ -46,7 +46,7 @@ const ModalCreatePost = () => {
           </button>
         </div>
         <div className="container-form-post">
-          <HeaderPost user={{ displayName }} foto={foto} />
+          <HeaderPost data={{ displayName, foto, uid }} />
           <form onSubmit={handleSubmitPost} className="form-post">
             <textarea
               maxLength="256"

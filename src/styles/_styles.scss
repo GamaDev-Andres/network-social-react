@@ -19,7 +19,7 @@ $portatil: 1100px;
 
 //--- media queries
 @mixin telefono {
-  @media (max-width: $telefono) {
+  @media (min-width: $telefono) {
     @content;
   }
 }

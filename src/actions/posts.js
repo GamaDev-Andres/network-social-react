@@ -6,24 +6,30 @@ import { types } from "../types/types";
 
 export const startCreatePost = (texto) => {
   return async (dispatch, getState) => {
-    const { email, displayName } = getState().auth;
+    const { email, displayName, uid } = getState().auth;
     const foto = auth.currentUser.photoURL;
-    const refCollection = collection(db, `usuarios/${email}/posts`);
+    // const refCollection = collection(db, `usuarios/${email}/posts`);
+    const refCollection = collection(db, "posts");
     const fechaCreacion = new Date().getTime();
     try {
-      const response = await addDoc(refCollection, {
+      await addDoc(refCollection, {
         texto,
         fechaCreacion,
-        userData: { email, displayName, foto },
+        email,
+        displayName,
+        foto,
+        uid,
       });
-      dispatch(
-        createPost({
-          id: response.id,
-          texto,
-          fechaCreacion,
-          userData: { email, displayName, foto },
-        })
-      );
+      // dispatch(
+      //   createPost({
+      //     id: response.id,
+      //     texto,
+      //     fechaCreacion,
+      //     email,
+      //     displayName,
+      //     foto,
+      //   })
+      // );
     } catch (error) {
       console.log(error);
     }

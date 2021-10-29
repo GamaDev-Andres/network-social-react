@@ -4,14 +4,10 @@ import HeaderPost from "./HeaderPost";
 import MainPost from "./MainPost";
 
 const Posts = ({ post }) => {
-  const { displayName, userData, id, texto, fechaCreacion } = post;
+  const { displayName, foto, id, texto, fechaCreacion, uid } = post;
   return (
     <div className="container-post box">
-      <HeaderPost
-        user={userData}
-        foto={userData.foto}
-        fechaCreacion={fechaCreacion}
-      />
+      <HeaderPost data={{ displayName, foto, fechaCreacion, uid }} />
       <MainPost texto={texto} />
       <FooterPost idPost={id} />
     </div>

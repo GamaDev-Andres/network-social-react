@@ -9,7 +9,7 @@ const HomeRouter = () => {
     <div>
       <Nav />
       <Switch>
-        <Route exact path="/perfil" component={Profile} />
+        <Route exact path="/perfil/:uid" component={Profile} />
         <Route exact path="/" component={Home} />
         <Redirect to="/" />
       </Switch>
