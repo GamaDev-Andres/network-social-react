@@ -1,8 +1,20 @@
-import { collection, doc, onSnapshot } from "@firebase/firestore";
+import { collection, getDocs, query, where } from "@firebase/firestore";
 import { db } from "../firebase/credentials";
 
 export const mapeoDocsPostsAObjetos = (arrDocs) => {
   return arrDocs.map((doc) => ({ ...doc.data(), id: doc.id }));
+};
+export const verificandoExistenciaUid = (uid) => {};
+export const filtrarPerfil = async (uid) => {
+  try {
+    const refUsuarios = collection(db, "usuarios");
+    const q = query(refUsuarios, where("uid", "==", uid));
+    const users = await getDocs(q);
+    return users.docs[0];
+  } catch (error) {
+    console.log("user no existe con ese uid");
+    console.log(error);
+  }
 };
 
 // export const escucharUltimosPosts=()=>{

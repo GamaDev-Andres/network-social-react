@@ -1,16 +1,8 @@
-import {
-  collection,
-  doc,
-  getDocs,
-  onSnapshot,
-  orderBy,
-  query,
-  where,
-} from "@firebase/firestore";
+import { collection, onSnapshot, orderBy, query } from "@firebase/firestore";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { clearPosts, createPost, getAllPosts } from "../../actions/posts";
+import { clearPosts, getAllPosts } from "../../actions/posts";
 import { db } from "../../firebase/credentials";
 import { mapeoDocsPostsAObjetos } from "../../helpers/firebase";
 
@@ -56,7 +48,7 @@ const Home = () => {
       unsubscribe();
       dispatch(clearPosts());
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <div id="container-home">

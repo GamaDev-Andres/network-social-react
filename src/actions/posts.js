@@ -20,16 +20,6 @@ export const startCreatePost = (texto) => {
         foto,
         uid,
       });
-      // dispatch(
-      //   createPost({
-      //     id: response.id,
-      //     texto,
-      //     fechaCreacion,
-      //     email,
-      //     displayName,
-      //     foto,
-      //   })
-      // );
     } catch (error) {
       console.log(error);
     }
