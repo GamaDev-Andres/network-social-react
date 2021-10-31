@@ -7,8 +7,12 @@ export const profileReducer = (state = null, action) => {
         ...state,
         ...action.payload,
       };
-
+    case types.profileSetPosts:
+      return {
+        ...state,
+        posts: action.payload,
+      };
     default:
-      return null;
+      return state;
   }
 };

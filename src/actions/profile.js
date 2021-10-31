@@ -19,3 +19,10 @@ const setUserProfile = (user) => {
     payload: user,
   };
 };
+
+export const getPostsUserProfile = (posts) => {
+  return {
+    type: types.profileSetPosts,
+    payload: posts,
+  };
+};

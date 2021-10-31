@@ -7,7 +7,7 @@ $rojoReaccion: #f44336;
 
 $telefono: 480px;
 $tablet: 768px;
-$portatil: 1100px;
+$desktop: 1100px;
 
 // mixins
 @mixin flexCenter($direction: row, $jc: center, $ai: center) {
@@ -31,7 +31,7 @@ $portatil: 1100px;
 }
 
 @mixin desktop {
-  @media (max-width: $desktop) {
+  @media (min-width: $desktop) {
     @content;
   }
 }

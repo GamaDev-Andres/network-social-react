@@ -5,13 +5,14 @@
   width: 100%;
   height: 80px;
   background-color: white;
-  border-bottom: 1px solid $grisIcons;
-  z-index: 99;
+  border-bottom: 1px solid $grisBase;
+  z-index: 200;
   @media (min-width: 600px) {
-    height: 40px;
+    height: 50px;
   }
   .container-nav {
     @include flexCenter(column);
+    height: 100%;
     gap: 5px;
     width: 100%;
     padding: 10px;
@@ -38,6 +39,9 @@
   @include flexCenter(row, space-between);
   width: 100%;
   gap: 5px;
+  @media (min-width: 600px) {
+    min-height: 100%;
+  }
   a,
   button {
     @include flexCenter();
@@ -48,12 +52,18 @@
     color: $grisPlaceHolder;
     border-bottom: 2px solid transparent;
     transition: background-color 0.3s ease-in-out;
-
+    @include desktop {
+      border-bottom: 3px solid transparent;
+    }
     &.active-link {
       color: $azulBase;
-      border-bottom: 2px solid $azulBase;
+      border-bottom: 3px solid $azulBase;
       transition: all 0.2s ease-in-out;
+      @include desktop {
+        border-bottom: 3px solid $azulBase;
+      }
     }
+
     &:hover {
       background-color: $grisBase;
     }
@@ -63,8 +73,8 @@
     }
     @media (min-width: 600px) {
       gap: 10px;
-      font-size: 1.1rem;
       span {
+        font-size: 1.1rem;
         display: inline;
       }
     }

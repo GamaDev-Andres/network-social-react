@@ -7,18 +7,13 @@ import { db } from "../../firebase/credentials";
 import { mapeoDocsPostsAObjetos } from "../../helpers/firebase";
 
 import Header from "../layout/Header";
-import ModalCreatePost from "./posts/ModalCreatePost";
 import Posts from "./posts/Posts";
 
 const Home = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
-  // const postsOrdenados = posts.sort((a, b) => {
-  //   return b.fechaCreacion - a.fechaCreacion;
-  // });
+
   useEffect(() => {
-    // actualizaciones de los posts en tiempo real firestore
-    // const refCollection = collection(db, `usuarios`);
     const refCollection = collection(db, `posts`);
     const q = query(refCollection, orderBy("fechaCreacion", "desc"));
     const unsubscribe = onSnapshot(
@@ -26,17 +21,6 @@ const Home = () => {
       (querySnapshot) => {
         const posts = mapeoDocsPostsAObjetos(querySnapshot.docs);
         dispatch(getAllPosts(posts));
-        // querySnapshot.forEach(async (doc) => {
-
-        // const ref = collection(db, `${doc.ref.path}/posts`);
-        // const docs = await getDocs(ref);
-
-        // docs.forEach((doc) => {
-        //   console.log(doc.data());
-        //   const post = doc.data();
-        //   dispatch(getAllPosts({ ...post, id: doc.id }));
-        // });
-        // });
       },
       (error) => {
         console.log("ERROR AL ESCUCHAR");
@@ -75,7 +59,6 @@ const Home = () => {
           )}
         </div>
       </main>
-      <ModalCreatePost />
     </div>
   );
 };

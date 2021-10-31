@@ -15,6 +15,7 @@ export const types = {
   postGetAllPosts: "[post] traer todos los post",
   postClearPosts: "[post] limpiando posts",
 
-  profileStartGetUser: "[profile] obtener usuario visitado",
+  // profileStartGetUser: "[profile] obtener usuario visitado",
   profiletSetUser: "[profile] asignando usuario visitado",
+  profileSetPosts: "[profile] asignando posts del user visitado",
 };
