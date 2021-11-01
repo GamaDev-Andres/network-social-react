@@ -4,6 +4,7 @@ import { friendReducer } from "./friendsReducer";
 import { postReducer } from "./postReducer";
 import { profileReducer } from "./profileReducer";
 import { uiReducer } from "./uiReducer";
+import { usersReducer } from "./usersReducer";
 
 export const rootReducer = combineReducers({
   auth: authReducer,
@@ -11,4 +12,5 @@ export const rootReducer = combineReducers({
   posts: postReducer,
   amigos: friendReducer,
   profileVisited: profileReducer,
+  users: usersReducer,
 });

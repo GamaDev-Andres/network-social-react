@@ -24,7 +24,7 @@ export const startRegisterWithEmailAndPassword = (newUser) => {
       );
       await updateProfile(user, {
         displayName: name,
-        photoURL: "none",
+        photoURL: null,
       });
 
       dispatch(login(user.uid, user.email, user.displayName));

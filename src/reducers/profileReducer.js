@@ -12,6 +12,9 @@ export const profileReducer = (state = null, action) => {
         ...state,
         posts: action.payload,
       };
+    case types.profileClearUserVisited:
+      return null;
+
     default:
       return state;
   }

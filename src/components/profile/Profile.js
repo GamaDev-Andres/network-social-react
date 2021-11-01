@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import HeaderProfile from "./HeaderProfile";
 import MainProfile from "./MainProfile";
-import { getUserProfileAction } from "../../actions/profile";
+import { clearUserVisited, getUserProfileAction } from "../../actions/profile";
 
 const Profile = () => {
   const { uid } = useParams();
@@ -21,6 +21,9 @@ const Profile = () => {
     }
 
     getUser();
+    return () => {
+      dispatch(clearUserVisited());
+    };
   }, [uid, dispatch]);
 
   if (!checkingUser && !profileVisited) {

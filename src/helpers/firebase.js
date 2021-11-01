@@ -17,25 +17,34 @@ export const filtrarPerfil = async (uid) => {
   }
 };
 
-export const filtrarPostsPorPerfil = async (email) => {
+export const getUsers = async () => {
   try {
-    //   const refPosts = collection(db, "posts");
-    //   const q = query(refPosts, where("email", "==", email));
-    //   const posts = await getDocs(q);
-    // const unsubscribe = onSnapshot(
-    //   q,
-    //   (querySnapshot) => {
-    //     const posts = mapeoDocsPostsAObjetos(querySnapshot.docs);
-    //     dispatc(getAllPosts(posts));
-    //   },
-    //   (error) => {
-    //     console.log("ERROR AL ESCUCHAR");
-    //     console.log(error);
-    //   }
-    // );
-    // console.log(posts);
+    const refUsuarios = collection(db, "usuarios");
+    const users = await getDocs(refUsuarios);
+    return users.docs;
   } catch (error) {
-    console.log("error filtrarPostsPorPerfil");
     console.log(error);
   }
 };
+// export const filtrarPostsPorPerfil = async (email) => {
+//   try {
+//     //   const refPosts = collection(db, "posts");
+//     //   const q = query(refPosts, where("email", "==", email));
+//     //   const posts = await getDocs(q);
+//     // const unsubscribe = onSnapshot(
+//     //   q,
+//     //   (querySnapshot) => {
+//     //     const posts = mapeoDocsPostsAObjetos(querySnapshot.docs);
+//     //     dispatc(getAllPosts(posts));
+//     //   },
+//     //   (error) => {
+//     //     console.log("ERROR AL ESCUCHAR");
+//     //     console.log(error);
+//     //   }
+//     // );
+//     // console.log(posts);
+//   } catch (error) {
+//     console.log("error filtrarPostsPorPerfil");
+//     console.log(error);
+//   }
+// };

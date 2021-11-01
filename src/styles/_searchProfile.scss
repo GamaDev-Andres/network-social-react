@@ -1,0 +1,41 @@
+.main-container-searchprofile {
+  @include flexCenter();
+  padding: 1rem;
+  margin-top: 1rem;
+  .container-search-profile {
+    @include flexCenter(column, center, stretch);
+    gap: 1rem;
+    width: 100%;
+    .container-sugerencias {
+      @include flexCenter(column, center, stretch);
+      gap: 10px;
+    }
+  }
+}
+
+.main-container-sugerencia {
+  @include flexCenter(row, flex-start);
+  gap: 1rem;
+  .container-img-profile {
+    width: 25%;
+    img {
+      width: 100%;
+      border-radius: 50%;
+    }
+  }
+  .container-info-sugerencia {
+    @include flexCenter(column, center, stretch);
+    gap: 1rem;
+    h3 {
+      a {
+        color: black;
+        font-weight: 500;
+      }
+    }
+    button {
+      background-color: $azulBase;
+      color: white;
+      letter-spacing: 1.5px;
+    }
+  }
+}

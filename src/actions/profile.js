@@ -26,3 +26,7 @@ export const getPostsUserProfile = (posts) => {
     payload: posts,
   };
 };
+
+export const clearUserVisited = () => ({
+  type: types.profileClearUserVisited,
+});
