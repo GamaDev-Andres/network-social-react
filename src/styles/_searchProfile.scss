@@ -18,6 +18,8 @@
   gap: 1rem;
   .container-img-profile {
     width: 25%;
+    max-width: 100px;
+    cursor: pointer;
     img {
       width: 100%;
       border-radius: 50%;
@@ -25,8 +27,9 @@
   }
   .container-info-sugerencia {
     @include flexCenter(column, center, stretch);
-    gap: 1rem;
+    gap: 0.5rem;
     h3 {
+      font-size: 1.2rem;
       a {
         color: black;
         font-weight: 500;

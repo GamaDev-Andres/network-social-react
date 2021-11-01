@@ -33,7 +33,7 @@ const MainProfile = () => {
     return () => {
       unsubscribe();
     };
-  }, [dispatch]);
+  }, [dispatch, email]);
   return (
     <main className="main-profile box">
       <SectionInforProfile />

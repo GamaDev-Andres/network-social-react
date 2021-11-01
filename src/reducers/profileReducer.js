@@ -12,6 +12,11 @@ export const profileReducer = (state = null, action) => {
         ...state,
         posts: action.payload,
       };
+    case types.profileSetFriends:
+      return {
+        ...state,
+        friends: action.payload,
+      };
     case types.profileClearUserVisited:
       return null;
 

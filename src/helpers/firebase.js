@@ -1,4 +1,5 @@
-import { collection, getDocs, query, where } from "@firebase/firestore";
+import { addDoc, collection, getDocs, query, where } from "@firebase/firestore";
+
 import { db } from "../firebase/credentials";
 
 export const mapeoDocsPostsAObjetos = (arrDocs) => {
@@ -22,6 +23,29 @@ export const getUsers = async () => {
     const refUsuarios = collection(db, "usuarios");
     const users = await getDocs(refUsuarios);
     return users.docs;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const addFriend = async (email, userFriend) => {
+  try {
+    const refCollectionFriends = collection(db, `usuarios/${email}/amigos`);
+    await addDoc(refCollectionFriends, {
+      ...userFriend,
+    });
+    console.log(refCollectionFriends);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const filterFriendsUser = async (email) => {
+  try {
+    // console.log(email);
+    const refCollectionFriends = collection(db, `usuarios/${email}/amigos`);
+    const resp = await getDocs(refCollectionFriends);
+    return resp.docs;
   } catch (error) {
     console.log(error);
   }

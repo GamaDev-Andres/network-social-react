@@ -27,8 +27,11 @@ const Profile = () => {
   }, [uid, dispatch]);
 
   if (!checkingUser && !profileVisited) {
-    Swal.fire("Error", "Url al que intento acceder no existe", "error");
-    return <Redirect to="/" />;
+    console.log(checkingUser);
+    console.log(profileVisited);
+    console.log("Url al que intento acceder no existe");
+    // Swal.fire("Error", "Url al que intento acceder no existe", "error");
+    // return <Redirect to="/" />;
   }
 
   return (

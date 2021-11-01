@@ -1,11 +1,15 @@
 import { getUsers, mapeoDocsPostsAObjetos } from "../helpers/firebase";
 import { types } from "../types/types";
 
-export const StartGetAllUsers = () => {
+export const StartGetAllUsers = (uidCurentUser) => {
   return async (dispatch) => {
     const docsUsers = await getUsers();
-    const arrUsers = mapeoDocsPostsAObjetos(docsUsers);
 
+    let arrUsers = mapeoDocsPostsAObjetos(docsUsers);
+
+    arrUsers = arrUsers.filter(
+      (userObject) => userObject.uid !== uidCurentUser
+    );
     dispatch(setAllUsers(arrUsers));
   };
 };

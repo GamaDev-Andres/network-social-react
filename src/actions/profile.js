@@ -1,4 +1,8 @@
-import { filtrarPerfil } from "../helpers/firebase";
+import {
+  filterFriendsUser,
+  filtrarPerfil,
+  mapeoDocsPostsAObjetos,
+} from "../helpers/firebase";
 import { types } from "../types/types";
 
 export const getUserProfileAction = (uid) => {
@@ -29,4 +33,18 @@ export const getPostsUserProfile = (posts) => {
 
 export const clearUserVisited = () => ({
   type: types.profileClearUserVisited,
+});
+
+export const startGetFriendsUserVisited = (email) => {
+  return async (dispatch) => {
+    const response = await filterFriendsUser(email);
+    const arrfriends = mapeoDocsPostsAObjetos(response);
+    console.log(arrfriends);
+    dispatch(setFriendsUserVisited(arrfriends));
+  };
+};
+
+const setFriendsUserVisited = (friends) => ({
+  type: types.profileSetFriends,
+  payload: friends,
 });

@@ -15,10 +15,11 @@
   gap: 1rem;
   justify-content: flex-start;
   .foto-container {
-    width: 30px !important;
+    width: 40px !important;
   }
   .datos-post-container {
     h4 {
+      margin: 0;
       a {
         color: black;
       }

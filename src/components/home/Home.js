@@ -14,22 +14,16 @@ const Home = () => {
   const posts = useSelector((state) => state.posts);
 
   useEffect(() => {
+    // ESCUCHANDO POSTS
     const refCollection = collection(db, `posts`);
     const q = query(refCollection, orderBy("fechaCreacion", "desc"));
-    const unsubscribe = onSnapshot(
-      q,
-      (querySnapshot) => {
-        const posts = mapeoDocsPostsAObjetos(querySnapshot.docs);
-        dispatch(getAllPosts(posts));
-      },
-      (error) => {
-        console.log("ERROR AL ESCUCHAR");
-        console.log(error);
-      }
-    );
+    const unsubscribePosts = onSnapshot(q, (querySnapshot) => {
+      const posts = mapeoDocsPostsAObjetos(querySnapshot.docs);
+      dispatch(getAllPosts(posts));
+    });
 
     return () => {
-      unsubscribe();
+      unsubscribePosts();
       dispatch(clearPosts());
     };
   }, [dispatch]);
