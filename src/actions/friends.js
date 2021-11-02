@@ -1,9 +1,9 @@
 import { addFriend } from "../helpers/firebase";
 import { types } from "../types/types";
 
-export const startAddFriend = (uid, userFriend) => {
+export const startAddFriend = (email, userFriend) => {
   return async (dispatch) => {
-    await addFriend(uid, userFriend);
+    await addFriend(email, userFriend);
   };
 };
 

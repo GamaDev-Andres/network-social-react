@@ -11,6 +11,7 @@ import Swal from "sweetalert2";
 
 import { auth } from "../firebase/credentials";
 import { validatorErrors } from "../helpers/codeErrorsValidator";
+import { createDocUser } from "../helpers/firebase";
 import { types } from "../types/types";
 
 export const startRegisterWithEmailAndPassword = (newUser) => {
@@ -32,6 +33,12 @@ export const startRegisterWithEmailAndPassword = (newUser) => {
     } catch (error) {
       validatorErrors(error.code);
     }
+  };
+};
+
+export const createDocUserAction = (user) => {
+  return async (dispatch) => {
+    await createDocUser(user);
   };
 };
 

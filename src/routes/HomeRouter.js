@@ -15,6 +15,7 @@ import { mapeoDocsPostsAObjetos } from "../helpers/firebase";
 const HomeRouter = () => {
   const { email } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
 
   useEffect(() => {
     // ESCUCHANDO AMIGOS
@@ -30,7 +31,9 @@ const HomeRouter = () => {
       unsubcribeFriends();
     };
   }, [email, dispatch]);
-
+  if (!auth.displayName) {
+    return <h1>loading... por displayname</h1>;
+  }
   return (
     <div>
       <Nav />

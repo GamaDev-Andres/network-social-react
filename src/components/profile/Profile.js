@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import HeaderProfile from "./HeaderProfile";
 import MainProfile from "./MainProfile";
-import { clearUserVisited, getUserProfileAction } from "../../actions/profile";
+import { getUserProfileAction } from "../../actions/profile";
 
 const Profile = () => {
   const { uid } = useParams();
@@ -21,17 +21,14 @@ const Profile = () => {
     }
 
     getUser();
-    return () => {
-      dispatch(clearUserVisited());
-    };
+    // return () => {
+    //   // dispatch(clearUserVisited());
+    // };
   }, [uid, dispatch]);
 
   if (!checkingUser && !profileVisited) {
-    console.log(checkingUser);
-    console.log(profileVisited);
-    console.log("Url al que intento acceder no existe");
-    // Swal.fire("Error", "Url al que intento acceder no existe", "error");
-    // return <Redirect to="/" />;
+    Swal.fire("Error", "Url al que intento acceder no existe", "error");
+    return <Redirect to="/" />;
   }
 
   return (

@@ -4,14 +4,12 @@ import { Switch, BrowserRouter as Router, Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import Register from "../components/auth/Register";
-import { auth, db } from "../firebase/credentials";
+import { auth } from "../firebase/credentials";
 import HomeRouter from "./HomeRouter";
 import { login } from "../actions/auth";
 import Login from "../components/auth/Login";
 import PrivateRouter from "./PrivateRouter";
 import PublicRouter from "./PublicRouter";
-import { doc, getDoc, setDoc } from "@firebase/firestore";
-import userEmpty from "../assets/userEmpty.jpg";
 
 const AppRouter = () => {
   const dispatch = useDispatch();
@@ -23,27 +21,9 @@ const AppRouter = () => {
         if (user) {
           const { uid, displayName, email } = user;
           dispatch(login(uid, email, displayName));
-          creandoDocUser(user);
         }
         setChecking(false);
       });
-    };
-    // ----------------------------CORREGIR, OPTIMIZAR
-    const creandoDocUser = async (user) => {
-      const { uid, displayName, email, photoURL } = user;
-      const docRef = doc(db, "usuarios", user.email);
-      // const refCollection = collection(db, `usuarios/${email}/mensajes`);
-      const response = await getDoc(docRef);
-      if (!response.exists()) {
-        setDoc(docRef, {
-          uid,
-          displayName,
-          email,
-          foto: photoURL === "none" ? userEmpty : photoURL,
-        });
-      }
-      // collection
-      // setDoc(doc(refCollection, email), { hola: uid });
     };
 
     observandoAutenticacion();

@@ -4,7 +4,11 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import Swal from "sweetalert2";
 
-import { startRegisterWithEmailAndPassword } from "../../actions/auth";
+import {
+  createDocUserAction,
+  startRegisterWithEmailAndPassword,
+} from "../../actions/auth";
+import { auth } from "../../firebase/credentials";
 import { validador } from "../../helpers/validator";
 import useForm from "../../hooks/useForm";
 
@@ -19,7 +23,6 @@ const initialForm = {
 const Register = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-
   const [formValues, setFormValue] = useForm(initialForm);
   const { name, email, password, confirmPassword } = formValues;
 
@@ -43,7 +46,10 @@ const Register = () => {
       Swal.fire("Error", "Las contraseñas no coinciden", "error");
       return;
     }
-    dispatch(startRegisterWithEmailAndPassword(formValues));
+    dispatch(startRegisterWithEmailAndPassword(formValues)).then(() => {
+      const userAuth = auth.currentUser;
+      dispatch(createDocUserAction(userAuth));
+    });
   };
   return (
     <div className="auth__container">

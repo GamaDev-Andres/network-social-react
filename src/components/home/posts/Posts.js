@@ -1,4 +1,5 @@
 import React from "react";
+
 import FooterPost from "./FooterPost";
 import HeaderPost from "./HeaderPost";
 import MainPost from "./MainPost";

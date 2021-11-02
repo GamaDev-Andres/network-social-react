@@ -1,4 +1,13 @@
-import { addDoc, collection, getDocs, query, where } from "@firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+} from "@firebase/firestore";
 
 import { db } from "../firebase/credentials";
 
@@ -34,7 +43,6 @@ export const addFriend = async (email, userFriend) => {
     await addDoc(refCollectionFriends, {
       ...userFriend,
     });
-    console.log(refCollectionFriends);
   } catch (error) {
     console.log(error);
   }
@@ -42,7 +50,6 @@ export const addFriend = async (email, userFriend) => {
 
 export const filterFriendsUser = async (email) => {
   try {
-    // console.log(email);
     const refCollectionFriends = collection(db, `usuarios/${email}/amigos`);
     const resp = await getDocs(refCollectionFriends);
     return resp.docs;
@@ -50,25 +57,17 @@ export const filterFriendsUser = async (email) => {
     console.log(error);
   }
 };
-// export const filtrarPostsPorPerfil = async (email) => {
-//   try {
-//     //   const refPosts = collection(db, "posts");
-//     //   const q = query(refPosts, where("email", "==", email));
-//     //   const posts = await getDocs(q);
-//     // const unsubscribe = onSnapshot(
-//     //   q,
-//     //   (querySnapshot) => {
-//     //     const posts = mapeoDocsPostsAObjetos(querySnapshot.docs);
-//     //     dispatc(getAllPosts(posts));
-//     //   },
-//     //   (error) => {
-//     //     console.log("ERROR AL ESCUCHAR");
-//     //     console.log(error);
-//     //   }
-//     // );
-//     // console.log(posts);
-//   } catch (error) {
-//     console.log("error filtrarPostsPorPerfil");
-//     console.log(error);
-//   }
-// };
+
+export const createDocUser = async (user) => {
+  const { uid, displayName, email, photoURL } = user;
+  const docRef = doc(db, "usuarios", email);
+  const response = await getDoc(docRef);
+  if (!response.exists()) {
+    await setDoc(docRef, {
+      uid,
+      displayName,
+      email,
+      foto: photoURL,
+    });
+  }
+};

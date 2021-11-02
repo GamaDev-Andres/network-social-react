@@ -18,6 +18,7 @@ const SearchProfile = () => {
   }, [dispatch, uid]);
 
   if (loading) <h1>loading...</h1>;
+
   return (
     <div className="main-container-searchprofile box">
       <div className="container-search-profile">

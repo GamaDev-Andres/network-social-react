@@ -21,6 +21,7 @@ function validateEmail(email, nameDate) {
   }
   return true;
 }
+
 function validateString(string, nameDate) {
   if (validator.isEmpty(string)) {
     Swal.fire("Error", `${nameDate} no puede ir vacio`, "error");

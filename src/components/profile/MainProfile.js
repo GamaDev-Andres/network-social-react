@@ -7,6 +7,7 @@ import {
 } from "@firebase/firestore";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { getPostsUserProfile } from "../../actions/profile";
 import { db } from "../../firebase/credentials";
 import { mapeoDocsPostsAObjetos } from "../../helpers/firebase";
@@ -18,6 +19,7 @@ import SectionPostsProfile from "./SectionPostsProfile";
 const MainProfile = () => {
   const { email } = useSelector((state) => state.profileVisited);
   const dispatch = useDispatch();
+
   useEffect(() => {
     const refPostsUser = collection(db, "posts");
     const q = query(
@@ -25,6 +27,7 @@ const MainProfile = () => {
       where("email", "==", email),
       orderBy("fechaCreacion", "desc")
     );
+
     const unsubscribe = onSnapshot(q, (qs) => {
       const posts = mapeoDocsPostsAObjetos(qs.docs);
       dispatch(getPostsUserProfile(posts));
@@ -34,6 +37,7 @@ const MainProfile = () => {
       unsubscribe();
     };
   }, [dispatch, email]);
+
   return (
     <main className="main-profile box">
       <SectionInforProfile />

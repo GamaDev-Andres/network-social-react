@@ -1,14 +1,12 @@
 import { addDoc, collection } from "@firebase/firestore";
+
 import { auth, db } from "../firebase/credentials";
 import { types } from "../types/types";
-
-// acciones de publicaciones
 
 export const startCreatePost = (texto) => {
   return async (dispatch, getState) => {
     const { email, displayName, uid } = getState().auth;
     const foto = auth.currentUser.photoURL;
-    // const refCollection = collection(db, `usuarios/${email}/posts`);
     const refCollection = collection(db, "posts");
     const fechaCreacion = new Date().getTime();
     try {

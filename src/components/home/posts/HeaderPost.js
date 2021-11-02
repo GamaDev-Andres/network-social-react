@@ -4,6 +4,7 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import userEmpty from "../../../assets/userEmpty.jpg";
+
 const HeaderPost = ({ data }) => {
   const history = useHistory();
   moment.locale("es");

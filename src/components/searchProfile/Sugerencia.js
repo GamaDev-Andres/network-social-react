@@ -7,12 +7,13 @@ import userEmpty from "../../assets/userEmpty.jpg";
 import { startAddFriend } from "../../actions/friends";
 
 const Sugerencia = ({ user }) => {
-  const { displayName, foto, uid } = user;
   const history = useHistory();
   const dispatch = useDispatch();
   const { email } = useSelector((state) => state.auth);
   const amigos = useSelector((state) => state.amigos);
+
   const [loading, setLoading] = useState(true);
+  const { displayName, foto, uid } = user;
 
   const handleClickRedirect = () => {
     history.push(`/perfil/${uid}`);

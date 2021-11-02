@@ -1,13 +1,16 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { startLogOut } from "../../actions/auth";
 import { VscHome } from "react-icons/vsc";
 import { FaUserFriends } from "react-icons/fa";
 import { MdPersonSearch } from "react-icons/md";
 import { BiLogOut } from "react-icons/bi";
+
+import { startLogOut } from "../../actions/auth";
+
 const Nav = () => {
   const dispatch = useDispatch();
+
   const handleLogOut = () => {
     dispatch(startLogOut());
   };
