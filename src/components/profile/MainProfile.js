@@ -18,6 +18,7 @@ import SectionPostsProfile from "./SectionPostsProfile";
 
 const MainProfile = () => {
   const { email } = useSelector((state) => state.profileVisited);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const MainProfile = () => {
       where("email", "==", email),
       orderBy("fechaCreacion", "desc")
     );
-
+    // escuchando cambios en posts del perfil
     const unsubscribe = onSnapshot(q, (qs) => {
       const posts = mapeoDocsPostsAObjetos(qs.docs);
       dispatch(getPostsUserProfile(posts));

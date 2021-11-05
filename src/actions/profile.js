@@ -39,7 +39,6 @@ export const startGetFriendsUserVisited = (email) => {
   return async (dispatch) => {
     const response = await filterFriendsUser(email);
     const arrfriends = mapeoDocsPostsAObjetos(response);
-    console.log(arrfriends);
     dispatch(setFriendsUserVisited(arrfriends));
   };
 };

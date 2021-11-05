@@ -21,9 +21,6 @@ const Profile = () => {
     }
 
     getUser();
-    // return () => {
-    //   // dispatch(clearUserVisited());
-    // };
   }, [uid, dispatch]);
 
   if (!checkingUser && !profileVisited) {

@@ -8,7 +8,7 @@ const Posts = ({ post }) => {
   const { displayName, foto, id, texto, fechaCreacion, uid } = post;
   return (
     <div className="container-post box">
-      <HeaderPost data={{ displayName, foto, fechaCreacion, uid }} />
+      <HeaderPost data={{ displayName, foto, fechaCreacion, uid, id }} />
       <MainPost texto={texto} />
       <FooterPost idPost={id} />
     </div>

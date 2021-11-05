@@ -21,19 +21,21 @@ const SectionFriends = () => {
   }
 
   return (
-    <section className="main-container-section-friends">
-      <div className="container-friends">
-        <h2>Amigos</h2>
-        <div className="container-grid-friends">
-          <div className="friends">
-            {friends.map((friend) => (
-              <Friend key={friend.id} friend={friend} />
-            ))}
+    friends?.length > 0 && (
+      <section className="main-container-section-friends">
+        <div className="container-friends">
+          <h2>Amigos</h2>
+          <div className="container-grid-friends">
+            <div className="friends">
+              {friends.map((friend) => (
+                <Friend key={friend.id} friend={friend} />
+              ))}
+            </div>
+            <button type="button">Ver todos</button>
           </div>
-          <button type="button">Ver todos</button>
         </div>
-      </div>
-    </section>
+      </section>
+    )
   );
 };
 

@@ -1,6 +1,7 @@
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
@@ -47,7 +48,22 @@ export const addFriend = async (email, userFriend) => {
     console.log(error);
   }
 };
-
+export const deleteFriend = async (email, userFriend) => {
+  try {
+    const refCollectionFriends = collection(db, `usuarios/${email}/amigos`);
+    const q = query(
+      refCollectionFriends,
+      where("email", "==", userFriend.email)
+    );
+    const response = await getDocs(q);
+    response.docs.forEach(async (document) => {
+      const refDoc = doc(db, `usuarios/${email}/amigos`, document.id);
+      await deleteDoc(refDoc);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 export const filterFriendsUser = async (email) => {
   try {
     const refCollectionFriends = collection(db, `usuarios/${email}/amigos`);

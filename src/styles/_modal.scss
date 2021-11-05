@@ -18,6 +18,7 @@
 }
 .ReactModal__Overlay {
   @include flexCenter();
+  z-index: 99;
 }
 .ReactModal__Content {
   position: relative;

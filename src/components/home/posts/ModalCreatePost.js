@@ -1,35 +1,68 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
+import Swal from "sweetalert2";
+import { useHistory } from "react-router";
 
 import { closeModal } from "../../../actions/ui";
 import useForm from "../../../hooks/useForm";
 import HeaderPost from "./HeaderPost";
-import { startCreatePost } from "../../../actions/posts";
+import { startCreatePost, startEditPost } from "../../../actions/posts";
 import { auth } from "../../../firebase/credentials";
 
 Modal.setAppElement("#root");
 
 const ModalCreatePost = () => {
+  let posts;
+
   const foto = auth.currentUser.photoURL;
   const dispatch = useDispatch();
+
   const { displayName, uid } = useSelector((state) => state.auth);
   const primerNombre = displayName.split(" ")[0];
-  const { openModal } = useSelector((state) => state.ui);
-  const [formValues, setFormValue, reset] = useForm({ texto: "" });
+  const history = useHistory();
+  const postsHome = useSelector((state) => state.posts);
+  const postsProfile = useSelector((state) => state.profileVisited);
+  if (history.location.pathname === "/") {
+    posts = postsHome;
+  } else {
+    posts = postsProfile?.posts;
+  }
+  const { openModal, edit } = useSelector((state) => state.ui);
+  const [formValues, setFormValue, reset] = useForm({
+    texto: "",
+  });
+
   const { texto } = formValues;
 
   const handleCloseModal = () => {
-    reset();
+    reset({ texto: "" });
     dispatch(closeModal());
   };
 
   const handleSubmitPost = (e) => {
     e.preventDefault();
-    dispatch(startCreatePost(texto));
+    if (edit) {
+      dispatch(startEditPost(texto, edit)).then(() => {
+        Swal.fire("Listo!", "Editado exitosamente", "success");
+      });
+    } else {
+      dispatch(startCreatePost(texto)).then(() => {
+        Swal.fire("Listo!", "Creado exitosamente", "success");
+      });
+    }
     handleCloseModal();
   };
+
+  useEffect(() => {
+    if (edit) {
+      const postEdit = posts.find((post) => post.id === edit);
+      reset({ texto: postEdit.texto });
+    } else {
+      reset({ texto: "" });
+    }
+  }, [edit]);
 
   return (
     <>
@@ -40,13 +73,14 @@ const ModalCreatePost = () => {
         closeTimeoutMS={100}
       >
         <div className="container-title">
-          <h2>Crea tu publicacion</h2>
+          <h2>{edit ? "Edita tu publicacion" : "Crea tu publicacion"}</h2>
           <button onClick={handleCloseModal}>
             <AiOutlineClose />
           </button>
         </div>
         <div className="container-form-post">
           <HeaderPost data={{ displayName, foto, uid }} />
+          {texto}
           <form onSubmit={handleSubmitPost} className="form-post">
             <textarea
               maxLength="256"
@@ -59,10 +93,10 @@ const ModalCreatePost = () => {
 
             <button
               onClick={handleSubmitPost}
-              disabled={texto.length > 0 ? false : true}
+              disabled={texto.trim().length > 0 ? false : true}
               type="submit"
             >
-              Publicar
+              {edit ? "Editar" : "Publicar"}
             </button>
           </form>
         </div>

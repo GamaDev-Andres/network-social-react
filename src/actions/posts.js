@@ -1,4 +1,10 @@
-import { addDoc, collection } from "@firebase/firestore";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from "@firebase/firestore";
 
 import { auth, db } from "../firebase/credentials";
 import { types } from "../types/types";
@@ -31,6 +37,29 @@ export const createPost = (post) => {
   };
 };
 
+export const startEditPost = (texto, id) => {
+  return async (dispatch, getState) => {
+    const docCollection = doc(db, "posts", id);
+    try {
+      await updateDoc(docCollection, {
+        texto,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+export const startDeletePost = (id) => {
+  return async (dispatch) => {
+    try {
+      const docCollection = doc(db, "posts", id);
+
+      await deleteDoc(docCollection);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 export const getAllPosts = (posts) => {
   return {
     type: types.postGetAllPosts,

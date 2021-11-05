@@ -4,14 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 
 import userEmpty from "../../assets/userEmpty.jpg";
-import { startAddFriend } from "../../actions/friends";
+import { startAddFriend, startDeleteFriend } from "../../actions/friends";
 
 const Sugerencia = ({ user }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { email } = useSelector((state) => state.auth);
   const amigos = useSelector((state) => state.amigos);
-
   const [loading, setLoading] = useState(true);
   const { displayName, foto, uid } = user;
 
@@ -19,9 +18,16 @@ const Sugerencia = ({ user }) => {
     history.push(`/perfil/${uid}`);
   };
 
-  const handleAddFriend = () => {
-    delete user.id;
+  const handleAddOrDeleteFriend = () => {
     setLoading(false);
+    if (amigos.some((amigo) => amigo.uid === uid)) {
+      dispatch(startDeleteFriend(email, user)).then(() => {
+        setLoading(true);
+      });
+      return;
+    }
+    delete user.id;
+
     dispatch(startAddFriend(email, user)).then(() => {
       setLoading(true);
     });
@@ -51,7 +57,7 @@ const Sugerencia = ({ user }) => {
               Loading...
             </Button>
           ) : (
-            <button onClick={handleAddFriend}>
+            <button onClick={handleAddOrDeleteFriend}>
               {amigos.some((amigo) => amigo.uid === uid)
                 ? "Eliminar"
                 : "Agregar"}
