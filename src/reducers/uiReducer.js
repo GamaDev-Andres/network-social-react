@@ -19,6 +19,17 @@ export const uiReducer = (state = initialState, action) => {
         edit: false,
       };
 
+    case types.uiOpenModalInfo:
+      return {
+        ...state,
+        openModalInfo: true,
+      };
+    case types.uiCloseModalInfo:
+      return {
+        ...state,
+        openModalInfo: false,
+      };
+
     default:
       return state;
   }

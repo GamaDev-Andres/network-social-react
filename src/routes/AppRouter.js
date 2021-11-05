@@ -20,7 +20,7 @@ const AppRouter = () => {
       onAuthStateChanged(auth, (user) => {
         if (user) {
           const { uid, displayName, email } = user;
-          dispatch(login(uid, email, displayName));
+          dispatch(login({ uid, email, displayName }));
         }
         setChecking(false);
       });

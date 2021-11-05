@@ -1,21 +1,18 @@
 import moment from "moment";
 import "moment/locale/es";
-import React, { useRef } from "react";
+import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import { BsThreeDots } from "react-icons/bs";
 
 import userEmpty from "../../../assets/userEmpty.jpg";
-import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { openModal } from "../../../actions/ui";
 import { startDeletePost } from "../../../actions/posts";
 import Swal from "sweetalert2";
+import Options from "../../layout/Options";
 
 const HeaderPost = ({ data }) => {
   const { displayName, foto, fechaCreacion, uid, id } = data;
   const history = useHistory();
-  const menu = useRef();
-  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   moment.locale("es");
   const fechaPost = moment(fechaCreacion);
@@ -23,10 +20,6 @@ const HeaderPost = ({ data }) => {
 
   const handleRedirectProfile = () => {
     history.push(`/perfil/${uid}`);
-  };
-
-  const handleOpenMenu = () => {
-    menu.current.classList.toggle("oculto");
   };
 
   const handleOpenModalEdit = () => {
@@ -61,19 +54,14 @@ const HeaderPost = ({ data }) => {
         </h4>
         <small>{fecha}</small>
       </div>
-      {auth.uid === uid && (
-        <div className="container-options">
-          <BsThreeDots onClick={handleOpenMenu} className="options-post" />
-          <div ref={menu} className="container-items-options oculto">
-            <div onClick={handleOpenModalEdit} className="option-edit">
-              <span>editar</span>
-            </div>
-            <div onClick={handleDeletePost} className="option-delete">
-              <span>eliminar</span>
-            </div>
-          </div>
+      <Options uid={uid}>
+        <div onClick={handleOpenModalEdit} className="option-edit">
+          <span>editar</span>
         </div>
-      )}
+        <div onClick={handleDeletePost} className="option-delete">
+          <span>eliminar</span>
+        </div>
+      </Options>
     </div>
   );
 };

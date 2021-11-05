@@ -78,10 +78,9 @@ const ModalCreatePost = () => {
             <AiOutlineClose />
           </button>
         </div>
-        <div className="container-form-post">
+        <div className="container-form-modal">
           <HeaderPost data={{ displayName, foto, uid }} />
-          {texto}
-          <form onSubmit={handleSubmitPost} className="form-post">
+          <form onSubmit={handleSubmitPost} className="form-modal">
             <textarea
               maxLength="256"
               name="texto"

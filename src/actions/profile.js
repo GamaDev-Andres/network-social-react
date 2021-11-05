@@ -1,3 +1,5 @@
+import { doc, updateDoc } from "@firebase/firestore";
+import { db } from "../firebase/credentials";
 import {
   filterFriendsUser,
   filtrarPerfil,
@@ -47,3 +49,16 @@ const setFriendsUserVisited = (friends) => ({
   type: types.profileSetFriends,
   payload: friends,
 });
+
+export const startEditInfoUser = (email, data) => {
+  return async () => {
+    const docCollection = doc(db, "usuarios", email);
+    try {
+      await updateDoc(docCollection, {
+        ...data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};

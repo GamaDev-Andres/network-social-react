@@ -88,8 +88,14 @@ main.main-profile {
   padding: 10px;
   .container-info {
     @include flexCenter(column, center, stretch);
+    position: relative;
     gap: 10px;
     width: 100%;
+    .container-options {
+      .container-items-options {
+        transform: translate(-4.3rem, 0.5rem);
+      }
+    }
   }
 }
 .container-details {

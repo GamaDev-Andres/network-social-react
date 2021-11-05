@@ -28,57 +28,6 @@
   }
 }
 
-.container-options {
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  right: 0;
-  @include flexCenter();
-  .options-post {
-    font-size: 1.2rem;
-  }
-  .container-items-options {
-    &.oculto {
-      display: none;
-    }
-    border: 1px solid $azulBase;
-    @include flexCenter(column, center, stretch);
-    width: 100px;
-    border-radius: 5px 0 5px 5px;
-    position: absolute;
-    transform: translate(-4.3rem, 1.5rem);
-    background-color: $grisBase;
-    &::before {
-      content: "";
-      display: block;
-      width: 0;
-      height: 0;
-      border-top: 9px solid transparent;
-      border-bottom: 9px solid transparent;
-      border-left: 9px solid $azulBase;
-      position: absolute;
-      top: 0px;
-      right: -10px;
-    }
-    div {
-      padding: 5px;
-      span {
-        width: 100%;
-        display: block;
-        margin: 0 auto;
-        text-align: center;
-      }
-      &:hover {
-        background-color: lighten($azulBase, $amount: 30);
-        transition: all 0.3s ease-in-out;
-      }
-      &:first-child {
-        border-bottom: 1px solid grey;
-      }
-    }
-  }
-}
-
 .footer-post-container {
   width: 100%;
   @include flexCenter(column);

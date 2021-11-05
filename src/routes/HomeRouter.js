@@ -1,12 +1,14 @@
-import { collection, onSnapshot } from "@firebase/firestore";
+import { collection, doc, onSnapshot } from "@firebase/firestore";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, Route, Switch } from "react-router";
+import { login } from "../actions/auth";
 
 import { addFriendAction } from "../actions/friends";
 import Home from "../components/home/Home";
 import ModalCreatePost from "../components/home/posts/ModalCreatePost";
 import Nav from "../components/layout/Nav";
+import ModalEditInfo from "../components/profile/ModalEditInfo";
 import Profile from "../components/profile/Profile";
 import SearchProfile from "../components/searchProfile/SearchProfile";
 import { db } from "../firebase/credentials";
@@ -27,8 +29,16 @@ const HomeRouter = () => {
         dispatch(addFriendAction(friends));
       }
     );
+
+    // ESCUCHAR DATA USUARIO
+    const refUser = doc(db, "usuarios", email);
+    const unsubscribeUser = onSnapshot(refUser, (documento) => {
+      const dataUser = documento.data();
+      dispatch(login(dataUser));
+    });
     return () => {
       unsubcribeFriends();
+      unsubscribeUser();
     };
   }, [email, dispatch]);
   if (!auth.displayName) {
@@ -44,6 +54,7 @@ const HomeRouter = () => {
         <Redirect to="/" />
       </Switch>
       <ModalCreatePost />
+      <ModalEditInfo />
     </div>
   );
 };

@@ -28,7 +28,13 @@ export const startRegisterWithEmailAndPassword = (newUser) => {
         photoURL: null,
       });
 
-      dispatch(login(user.uid, user.email, user.displayName));
+      dispatch(
+        login({
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+        })
+      );
       Swal.fire("Exito!", "Registro exitoso", "success");
     } catch (error) {
       validatorErrors(error.code);
@@ -53,12 +59,10 @@ export const startLogin = (email, password) => {
   };
 };
 
-export const login = (uid, email, displayName) => ({
+export const login = (user) => ({
   type: types.authLogin,
   payload: {
-    displayName,
-    email,
-    uid,
+    ...user,
   },
 });
 

@@ -38,7 +38,7 @@ export const createPost = (post) => {
 };
 
 export const startEditPost = (texto, id) => {
-  return async (dispatch, getState) => {
+  return async () => {
     const docCollection = doc(db, "posts", id);
     try {
       await updateDoc(docCollection, {
@@ -50,7 +50,7 @@ export const startEditPost = (texto, id) => {
   };
 };
 export const startDeletePost = (id) => {
-  return async (dispatch) => {
+  return async () => {
     try {
       const docCollection = doc(db, "posts", id);
 

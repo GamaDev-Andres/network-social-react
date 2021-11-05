@@ -6,7 +6,7 @@
   height: 80px;
   background-color: white;
   border-bottom: 1px solid $grisBase;
-  z-index: 200;
+  z-index: 99;
   @media (min-width: 600px) {
     height: 50px;
   }
