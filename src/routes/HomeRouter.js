@@ -7,6 +7,8 @@ import { login } from "../actions/auth";
 import { addFriendAction } from "../actions/friends";
 import Home from "../components/home/Home";
 import ModalCreatePost from "../components/home/posts/ModalCreatePost";
+import ModalViewComents from "../components/home/posts/ModalViewComents";
+import ModalViewLikes from "../components/home/posts/ModalViewLikes";
 import Nav from "../components/layout/Nav";
 import ModalEditInfo from "../components/profile/ModalEditInfo";
 import Profile from "../components/profile/Profile";
@@ -55,6 +57,8 @@ const HomeRouter = () => {
       </Switch>
       <ModalCreatePost />
       <ModalEditInfo />
+      <ModalViewLikes />
+      <ModalViewComents />
     </div>
   );
 };

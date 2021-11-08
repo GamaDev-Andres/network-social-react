@@ -87,3 +87,13 @@ export const createDocUser = async (user) => {
     });
   }
 };
+
+export const getDocOfCollectionLikesOneUser = async (pathCollection, idDoc) => {
+  try {
+    const refDoc = doc(db, pathCollection, idDoc);
+    const response = await getDoc(refDoc);
+    return response.data();
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -29,6 +29,33 @@ export const uiReducer = (state = initialState, action) => {
         ...state,
         openModalInfo: false,
       };
+    case types.uiOpenModalLikes:
+      return {
+        ...state,
+        openModalLikes: {
+          open: true,
+          data: action.payload,
+        },
+      };
+    case types.uiCloseModalLikes:
+      return {
+        ...state,
+        openModalLikes: { open: false },
+      };
+    case types.uiOpenModalComents:
+      return {
+        ...state,
+        openModalComents: {
+          open: true,
+          idPost: action.payload.id,
+          data: action.payload.coments || [],
+        },
+      };
+    case types.uiCloseModalComents:
+      return {
+        ...state,
+        openModalComents: { open: false },
+      };
 
     default:
       return state;

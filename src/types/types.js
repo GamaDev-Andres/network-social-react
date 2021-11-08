@@ -6,6 +6,10 @@ export const types = {
   uiCloseModal: "[ui] cerrando modal",
   uiCloseModalInfo: "[ui] cerrando modal de informacion",
   uiOpenModalInfo: "[ui] abrir modal de informacion",
+  uiOpenModalLikes: "[ui] abrir modal de likes",
+  uiCloseModalLikes: "[ui] cerrar modal de likes",
+  uiOpenModalComents: "[ui] abrir modal de Coments",
+  uiCloseModalComents: "[ui] cerrar modal de Coments",
 
   postCreatePost: "[post] creando post",
   postGetAllPosts: "[post] traer todos los post",

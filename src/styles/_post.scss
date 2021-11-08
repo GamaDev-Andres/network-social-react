@@ -35,6 +35,9 @@
   .footer-post-indicadores-container {
     width: 100%;
     @include flexCenter(row, space-between);
+    span {
+      cursor: pointer;
+    }
   }
   .footer-post-interacciones-container {
     width: 100%;
@@ -45,6 +48,12 @@
       gap: 5px;
       flex-grow: 1;
       transition: all 0.3s ease-in-out;
+      &.like {
+        // color: $rojoReaccion;
+        color: white;
+        background-color: $rojoReaccion;
+      }
+
       &:first-of-type:hover {
         color: $rojoReaccion;
       }
@@ -65,5 +74,37 @@
     width: 100%;
     display: block;
     // text-align: start;
+  }
+}
+// modal likes
+
+.main-container-modal-likes {
+  width: 100%;
+  @include flexCenter(column, center, stretch);
+  .container-title {
+    button {
+      top: 20px;
+    }
+  }
+}
+.row-container-like {
+  @include flexCenter(row, flex-start, center);
+  gap: 1rem;
+  border-bottom: 1px solid $grisBase;
+  padding: 10px 0;
+  .container-img-like {
+    width: 40px;
+    height: auto;
+    cursor: pointer;
+    img {
+      width: 100%;
+      border-radius: 50%;
+    }
+  }
+  .container-info-like {
+    h3 {
+      cursor: pointer;
+      margin: 0;
+    }
   }
 }
