@@ -10,6 +10,7 @@ import MainPost from "./MainPost";
 const Posts = ({ post }) => {
   const { displayName, foto, id, texto, fechaCreacion, uid } = post;
   const [arrlikes, setArrlikes] = useState([]);
+  const [arrComents, setArrComents] = useState([]);
   useEffect(() => {
     // escuchar cambios en reacciones del post
     const refCollectionLikes = collection(db, `posts/${id}/likes`);
@@ -17,7 +18,17 @@ const Posts = ({ post }) => {
       const arrLikesOfDocs = mapeoDocsPostsAObjetos(querySnaphots.docs);
       setArrlikes(arrLikesOfDocs);
     });
+    // escuchando comentarios
+    const refCollectionComents = collection(db, `posts/${id}/coments`);
+    const unsubscribeComents = onSnapshot(
+      refCollectionComents,
+      (querySnaphots) => {
+        const arrComentsOfDocs = mapeoDocsPostsAObjetos(querySnaphots.docs);
+        setArrComents(arrComentsOfDocs);
+      }
+    );
     return () => {
+      unsubscribeComents();
       unsubscribeLikes();
     };
   }, []);
@@ -25,7 +36,7 @@ const Posts = ({ post }) => {
     <div className="container-post box">
       <HeaderPost data={{ displayName, foto, fechaCreacion, uid, id }} />
       <MainPost texto={texto} />
-      <FooterPost idPost={id} arrlikes={arrlikes} />
+      <FooterPost idPost={id} arrlikes={arrlikes} arrComents={arrComents} />
     </div>
   );
 };

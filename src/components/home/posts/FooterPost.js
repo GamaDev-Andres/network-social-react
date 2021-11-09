@@ -1,19 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import { FcLike } from "react-icons/fc";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BsChatRight } from "react-icons/bs";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
 import { startToggleLike } from "../../../actions/posts";
-import { useSelector } from "react-redux";
 import { openModalComents, openModalLikes } from "../../../actions/ui";
 
-const FooterPost = ({ idPost, arrlikes }) => {
+const FooterPost = ({ idPost, arrlikes, arrComents }) => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
+
   const handleLike = () => {
     console.log("like");
     dispatch(startToggleLike(idPost));
   };
+
   const handleComent = () => {
     console.log("coment");
     dispatch(openModalComents({ idPost }));
@@ -29,7 +31,7 @@ const FooterPost = ({ idPost, arrlikes }) => {
         <span onClick={handleViewModalLikes}>
           <FcLike /> {arrlikes.length}
         </span>
-        <span onClick={handleComent}>4 comentarios</span>
+        <span onClick={handleComent}>{arrComents.length} comentarios</span>
       </div>
       <div className="footer-post-interacciones-container">
         <button

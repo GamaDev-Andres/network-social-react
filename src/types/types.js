@@ -10,6 +10,7 @@ export const types = {
   uiCloseModalLikes: "[ui] cerrar modal de likes",
   uiOpenModalComents: "[ui] abrir modal de Coments",
   uiCloseModalComents: "[ui] cerrar modal de Coments",
+  uiaddComentsToModal: "[ui] agregando comentarios al modal",
 
   postCreatePost: "[post] creando post",
   postGetAllPosts: "[post] traer todos los post",

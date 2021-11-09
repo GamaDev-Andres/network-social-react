@@ -47,8 +47,7 @@ export const uiReducer = (state = initialState, action) => {
         ...state,
         openModalComents: {
           open: true,
-          idPost: action.payload.id,
-          data: action.payload.coments || [],
+          idPost: action.payload.idPost,
         },
       };
     case types.uiCloseModalComents:
@@ -56,7 +55,14 @@ export const uiReducer = (state = initialState, action) => {
         ...state,
         openModalComents: { open: false },
       };
-
+    case types.uiaddComentsToModal:
+      return {
+        ...state,
+        openModalComents: {
+          ...state.openModalComents,
+          data: action.payload,
+        },
+      };
     default:
       return state;
   }

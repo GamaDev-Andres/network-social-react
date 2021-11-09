@@ -30,3 +30,7 @@ export const openModalComents = (data) => ({
 export const closeModalComents = () => ({
   type: types.uiCloseModalComents,
 });
+export const addComentToModal = (arrComents) => ({
+  type: types.uiaddComentsToModal,
+  payload: arrComents,
+});

@@ -1,33 +1,69 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Modal from "react-modal";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
-import RowLike from "./RowLike";
+import { collection, onSnapshot } from "@firebase/firestore";
+
+// import RowLike from "./RowLike";
 import RowComent from "./RowComent";
-import useForm from "../../../hooks/useForm";
 import { startAddComentInPost } from "../../../actions/posts";
 import { closeModalComents } from "../../../actions/ui";
+import { db } from "../../../firebase/credentials";
+import { mapeoDocsPostsAObjetos } from "../../../helpers/firebase";
+import Swal from "sweetalert2";
+
 Modal.setAppElement("#root");
 
 const ModalViewComents = () => {
   const { openModalComents } = useSelector((state) => state.ui);
-  // const { openModalComents } = useSelector((state) => state.ui);
+  const [arrComents, setArrComents] = useState([]);
   const dispatch = useDispatch();
-  const [formValues, setFormValue, reset] = useForm({
-    texto: "",
-  });
+
+  const spanEditable = useRef();
+
   const handleCloseModalComents = () => {
     console.log("cerrando modal coments");
     dispatch(closeModalComents());
   };
 
-  const handleSubmitComent = () => {
-    if (formValues.texto > 0) {
-      dispatch(startAddComentInPost(formValues.texto));
+  const handleSubmitComent = (e) => {
+    e.preventDefault();
+
+    if (spanEditable.current.textContent.length > 0) {
+      console.log("entre");
+      console.log(spanEditable.current.textContent);
+      dispatch(startAddComentInPost(spanEditable.current.textContent)).then(
+        () => {
+          spanEditable.current.textContent = "";
+        }
+      );
     }
   };
+  const handleLengthComent = (e) => {
+    if (e.target.textContent.length > 128) {
+      Swal.fire(
+        "Error",
+        "El comentario no puede tener mas de 128 caracteres",
+        "error"
+      ).then(() => {
+        console.log("te pasaste");
+        let aux = spanEditable.current.textContent.substring(0, 128);
+        e.target.textContent = aux;
+      });
+    }
+  };
+  useEffect(() => {
+    if (openModalComents) {
+      const refCollectionComents = collection(
+        db,
+        `posts/${openModalComents.idPost}/coments`
+      );
+      onSnapshot(refCollectionComents, (querySnaphots) => {
+        const arrComentsOfDocs = mapeoDocsPostsAObjetos(querySnaphots.docs);
+        setArrComents(arrComentsOfDocs);
+      });
+    }
+  }, [openModalComents]);
 
   return (
     <>
@@ -45,27 +81,22 @@ const ModalViewComents = () => {
             </button>
           </div>
           <div className="main-container-coments">
-            {openModalComents?.data?.map((coment) => (
-              <RowComent key={coment.id} />
+            {arrComents.map((coment) => (
+              <RowComent key={coment.id} coment={coment} />
             ))}
           </div>
           <div className="container-textarea-coment">
-            <form onSubmit={handleSubmitComent} className="form-coment">
-              <textarea
-                onChange={setFormValue}
-                value={formValues.texto}
-                name="comentario"
-                maxLength="128"
-              ></textarea>
+            <form onSubmit={handleSubmitComent} className="form-modal">
+              <span
+                onInput={handleLengthComent}
+                ref={spanEditable}
+                contentEditable
+                className="text-coment text-area-fake"
+              ></span>
+
               <button type="submit">Enviar</button>
             </form>
           </div>
-          {/* {openModalComents?.data?.length === 0 && (
-            <h3>Sé el primero en reaccionar</h3>
-          )}
-          {openModalComents?.data?.map((like) => (
-            <RowLike key={like.id} user={like} />
-          ))} */}
         </div>
       </Modal>
     </>

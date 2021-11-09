@@ -96,12 +96,16 @@ export const startToggleLike = (idPost) => {
   };
 };
 
-export const startAddComentInPost = (idPost, texto) => {
+export const startAddComentInPost = (texto) => {
   return async (dispatch, getState) => {
     try {
       const user = getState().auth;
-      const refDoc = doc(db, `posts/${idPost}/coments`, user.email);
-      await setDoc(refDoc, {
+      const { openModalComents } = getState().ui;
+      const refCollection = collection(
+        db,
+        `posts/${openModalComents.idPost}/coments`
+      );
+      await addDoc(refCollection, {
         displayName: user.displayName,
         foto: auth.currentUser.photoURL,
         fechaComentario: new Date().getTime(),

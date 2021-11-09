@@ -6,8 +6,8 @@
   max-height: 95%;
   max-width: 500px;
   outline: none;
-  padding: 1rem;
-  overflow-y: scroll;
+  // padding: 1rem;
+  overflow: hidden;
   .header-post {
     .datos-post-container {
       small {
@@ -23,8 +23,11 @@
 .ReactModal__Content {
   position: relative;
   width: 90%;
-  // max-height: 90%;
+  // min-height: auto;
+  // max-height: 100%;
   height: auto;
+  // height: 100%;
+
   @include flexCenter(column);
   gap: 1rem;
 }
@@ -74,6 +77,54 @@
         color: black;
         background-color: $grisBase;
         cursor: not-allowed;
+      }
+    }
+  }
+}
+// modal de comentario
+
+.main-container-modal-coments {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+.main-container-coments {
+  width: 100%;
+  padding: 1rem;
+}
+.container-textarea-coment {
+  min-height: 50px;
+  width: 100%;
+
+  margin-top: 1rem;
+  @include flexCenter();
+  .form-modal {
+    @include flexCenter();
+    width: 100%;
+
+    flex-grow: 1;
+    gap: 10px;
+
+    button {
+      background-color: $azulBase;
+      color: white;
+    }
+    .text-area-fake {
+      display: block;
+      flex-grow: 1;
+      background-color: lighten($grisBase, $amount: 0);
+      border-radius: 10px;
+      padding: 5px 1rem;
+      min-height: 40px;
+      max-width: 80%;
+      width: 100%;
+      outline: none;
+      font-size: 1.25rem;
+      border: none;
+      position: relative;
+      &:empty::before {
+        position: absolute;
+        content: "Comenta aqui...";
       }
     }
   }
