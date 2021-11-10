@@ -2,13 +2,22 @@
   @include flexCenter();
   padding: 1rem;
   margin-top: 1rem;
+  max-width: 968px;
+  margin: 1rem auto;
   .container-search-profile {
     @include flexCenter(column, center, stretch);
     gap: 1rem;
     width: 100%;
+    h3 {
+      text-align: center;
+    }
     .container-sugerencias {
       @include flexCenter(column, center, stretch);
       gap: 10px;
+      @include telefono {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
     }
   }
 }
@@ -16,8 +25,16 @@
 .main-container-sugerencia {
   @include flexCenter(row, flex-start);
   gap: 1rem;
+  padding: 10px;
+  border: 1px solid darken($grisBase, $amount: 10);
+  border-radius: 10px;
+  background-color: $grisBase;
+  @include telefono {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
   .container-img-profile {
-    width: 25%;
+    min-width: 95px;
     max-width: 100px;
     cursor: pointer;
     img {
@@ -29,16 +46,35 @@
     @include flexCenter(column, center, stretch);
     gap: 0.5rem;
     h3 {
-      font-size: 1.2rem;
+      font-size: 1rem;
+      margin: 0;
+      text-align: center;
       a {
         color: black;
         font-weight: 500;
       }
     }
-    button {
-      background-color: $azulBase;
-      color: white;
-      letter-spacing: 1.5px;
+
+    .container-buton-sugerencia {
+      @include flexCenter();
+      gap: 10px;
+      flex-wrap: wrap;
+      button.boton-sugerencia {
+        background-color: $azulBase;
+        color: white;
+        letter-spacing: 1.5px;
+        flex-grow: 1;
+        &:disabled {
+          background-color: white;
+          color: black;
+          cursor: not-allowed;
+        }
+      }
+    }
+    @include telefono {
+      h3 {
+        font-size: 1.2rem;
+      }
     }
   }
 }

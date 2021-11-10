@@ -33,7 +33,7 @@
 }
 .container-title {
   width: 100%;
-  padding-bottom: 10px;
+  padding: 10px;
   border-bottom: 1px solid $grisIcons;
   @include flexCenter(row, space-between);
   h2 {
@@ -49,6 +49,7 @@
   }
 }
 .container-form-modal {
+  padding: 1rem;
   width: 100%;
   @include flexCenter(column);
   gap: 10px;
@@ -87,16 +88,41 @@
   width: 100%;
   height: 100%;
   overflow-y: scroll;
+  .container-title {
+    padding-top: 10px;
+    h2 {
+      margin: 0;
+    }
+  }
 }
 .main-container-coments {
   width: 100%;
-  padding: 1rem;
+  .main-container-rowComent {
+    padding: 0 1rem;
+    border-bottom: 1px solid darken($grisBase, $amount: 10);
+    // background-color: $;
+    .row-container-like {
+      border-bottom: none;
+      h3 {
+        font-size: 1rem;
+      }
+    }
+    .container-text-coment {
+      background-color: $grisBase;
+      margin-bottom: 10px;
+      padding: 1rem;
+      border-radius: 1rem;
+      @include flexCenter(row, flex-start, center);
+      p {
+        margin: 0;
+      }
+    }
+  }
 }
 .container-textarea-coment {
   min-height: 50px;
   width: 100%;
-
-  margin-top: 1rem;
+  padding: 1rem;
   @include flexCenter();
   .form-modal {
     @include flexCenter();

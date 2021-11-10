@@ -29,30 +29,34 @@ const Home = () => {
   }, [dispatch]);
 
   return (
-    <div id="container-home">
-      <Header />
-      <main>
-        <div className="container-all-posts">
-          {posts.length > 0 ? (
-            posts.map((post) => <Posts post={post} key={post.id} />)
-          ) : (
-            <div className="sk-fading-circle">
-              <div className="sk-circle1 sk-circle"></div>
-              <div className="sk-circle2 sk-circle"></div>
-              <div className="sk-circle3 sk-circle"></div>
-              <div className="sk-circle4 sk-circle"></div>
-              <div className="sk-circle5 sk-circle"></div>
-              <div className="sk-circle6 sk-circle"></div>
-              <div className="sk-circle7 sk-circle"></div>
-              <div className="sk-circle8 sk-circle"></div>
-              <div className="sk-circle9 sk-circle"></div>
-              <div className="sk-circle10 sk-circle"></div>
-              <div className="sk-circle11 sk-circle"></div>
-              <div className="sk-circle12 sk-circle"></div>
-            </div>
-          )}
-        </div>
-      </main>
+    <div id="main-container-page-home">
+      <aside className="box">soy aside</aside>
+
+      <div id="container-home">
+        <Header />
+        <main>
+          <div className="container-all-posts">
+            {posts.length > 0 ? (
+              posts.map((post) => <Posts post={post} key={post.id} />)
+            ) : (
+              <div className="sk-fading-circle">
+                <div className="sk-circle1 sk-circle"></div>
+                <div className="sk-circle2 sk-circle"></div>
+                <div className="sk-circle3 sk-circle"></div>
+                <div className="sk-circle4 sk-circle"></div>
+                <div className="sk-circle5 sk-circle"></div>
+                <div className="sk-circle6 sk-circle"></div>
+                <div className="sk-circle7 sk-circle"></div>
+                <div className="sk-circle8 sk-circle"></div>
+                <div className="sk-circle9 sk-circle"></div>
+                <div className="sk-circle10 sk-circle"></div>
+                <div className="sk-circle11 sk-circle"></div>
+                <div className="sk-circle12 sk-circle"></div>
+              </div>
+            )}
+          </div>
+        </main>
+      </div>
     </div>
   );
 };

@@ -117,3 +117,11 @@ export const startAddComentInPost = (texto) => {
     }
   };
 };
+
+export const startDeleteComent = (idComent) => {
+  return async (dispatch, getState) => {
+    const idPost = getState().ui.openModalComents.idPost;
+    const refDoc = doc(db, `posts/${idPost}/coments/${idComent}`);
+    await deleteDoc(refDoc);
+  };
+};

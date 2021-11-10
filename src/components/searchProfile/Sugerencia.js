@@ -57,12 +57,43 @@ const Sugerencia = ({ user }) => {
               Loading...
             </Button>
           ) : (
-            <button onClick={handleAddOrDeleteFriend}>
-              {amigos.some((amigo) => amigo.uid === uid)
-                ? "Eliminar"
-                : "Agregar"}
-            </button>
+            <>
+              <button
+                className="boton-sugerencia sug-add"
+                disabled={
+                  amigos?.some((amigo) => amigo.uid === uid) ? true : false
+                }
+                onClick={handleAddOrDeleteFriend}
+              >
+                {amigos.some((amigo) => amigo.uid === uid)
+                  ? "Agregado"
+                  : "Agregar"}
+              </button>
+              <button
+                className="boton-sugerencia sug-add"
+                disabled={
+                  amigos?.some((amigo) => amigo.uid === uid) ? false : true
+                }
+                onClick={handleAddOrDeleteFriend}
+              >
+                Eliminar
+              </button>
+            </>
           )}
+          {/* {!loading ? (
+            <Button variant="primary" disabled>
+              <Spinner
+                as="span"
+                animation="grow"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+              Loading...
+            </Button>
+          ) : (
+            
+          )} */}
         </div>
       </div>
     </div>

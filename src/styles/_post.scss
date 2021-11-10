@@ -49,7 +49,6 @@
       flex-grow: 1;
       transition: all 0.3s ease-in-out;
       &.like {
-        // color: $rojoReaccion;
         color: white;
         background-color: $rojoReaccion;
       }
@@ -73,7 +72,7 @@
   p {
     width: 100%;
     display: block;
-    // text-align: start;
+    margin: 0;
   }
 }
 // modal likes
@@ -105,6 +104,21 @@
     h3 {
       cursor: pointer;
       margin: 0;
+    }
+  }
+}
+
+.main-container-rowComent {
+  position: relative;
+  .icon-delete {
+    position: absolute;
+    top: 10px;
+    cursor: pointer;
+    right: 1rem;
+    color: lighten($rojoReaccion, $amount: 10);
+    &:hover {
+      color: red;
+      transition: color 0.3s ease;
     }
   }
 }

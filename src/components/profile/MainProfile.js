@@ -41,8 +41,10 @@ const MainProfile = () => {
 
   return (
     <main className="main-profile box">
-      <SectionInforProfile />
-      <SectionFriends />
+      <div className="lateral">
+        <SectionInforProfile />
+        <SectionFriends />
+      </div>
       <SectionPostsProfile />
       <ModalCreatePost />
     </main>

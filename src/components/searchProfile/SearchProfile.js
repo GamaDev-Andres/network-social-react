@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
@@ -8,16 +8,11 @@ import Sugerencia from "./Sugerencia";
 const SearchProfile = () => {
   const dispatch = useDispatch();
   const { uid } = useSelector((state) => state.auth);
-  const [loading, setLoading] = useState(true);
   const users = useSelector((state) => state.users);
 
   useEffect(() => {
-    dispatch(StartGetAllUsers(uid)).then(() => {
-      setLoading(false);
-    });
+    dispatch(StartGetAllUsers(uid)).then(() => {});
   }, [dispatch, uid]);
-
-  if (loading) <h1>loading...</h1>;
 
   return (
     <div className="main-container-searchprofile box">
