@@ -34,3 +34,11 @@ export const addComentToModal = (arrComents) => ({
   type: types.uiaddComentsToModal,
   payload: arrComents,
 });
+
+export const openModalFriends = () => ({
+  type: types.uiOpenModalFriends,
+});
+
+export const closeModalFriends = () => ({
+  type: types.uiCloseModalFriends,
+});

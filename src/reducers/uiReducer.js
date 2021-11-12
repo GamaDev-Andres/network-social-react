@@ -63,6 +63,16 @@ export const uiReducer = (state = initialState, action) => {
           data: action.payload,
         },
       };
+    case types.uiOpenModalFriends:
+      return {
+        ...state,
+        openModalFriends: true,
+      };
+    case types.uiCloseModalFriends:
+      return {
+        ...state,
+        openModalFriends: false,
+      };
     default:
       return state;
   }

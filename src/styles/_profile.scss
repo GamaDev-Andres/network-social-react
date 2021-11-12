@@ -7,6 +7,27 @@
   flex-direction: column;
   width: 100%;
   max-width: 940px;
+  .container-buton-sugerencia {
+    @include flexCenter(row, center, stretch);
+    width: 200px;
+    gap: 10px;
+    padding-bottom: 1rem;
+    button {
+      background-color: $azulBase;
+      border-radius: 10px;
+      color: white;
+      &:hover {
+        background-color: darken($azulBase, $amount: 10);
+        transition: background-color 0.3s ease;
+        color: white;
+      }
+      &:disabled {
+        background-color: $grisBase;
+        color: black;
+        cursor: not-allowed;
+      }
+    }
+  }
   button {
     @include flexCenter();
     padding: 8px;
@@ -82,17 +103,24 @@
 }
 main.main-profile {
   width: 100%;
-  @include flexCenter(column, center, stretch);
+  @include flexCenter(column, center, center);
   max-width: 940px;
   @media (min-width: 768px) {
-    @include flexCenter(row, center, stretch);
-    gap: 1rem;
+    @include flexCenter(row, center, flex-start);
     .lateral {
       max-width: 400px;
+      // width: 450px;
+      max-height: calc(100vh - 50px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      flex-grow: 1;
+      position: sticky;
+      top: 50px;
     }
   }
   .main-container-posts-profile {
     width: 100%;
+    max-width: calc(940px - 450px);
     .posts-user-profile {
       @include flexCenter(column, center, stretch);
       gap: 1rem;
@@ -141,6 +169,8 @@ main.main-profile {
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     .img-friend {
+      max-width: 90px;
+      margin: 0 auto;
       img {
         border-radius: 10px;
         width: 100%;

@@ -9,8 +9,10 @@
 }
 #main-container-page-home {
   @include flexCenter(row, center, flex-start);
-  padding: 10px 1rem;
+  padding: 10px 0;
   gap: 1rem;
+  max-width: 940px;
+  margin: 0 auto;
   aside {
     width: 400px;
     min-height: 100px;

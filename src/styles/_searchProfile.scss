@@ -8,6 +8,32 @@
     @include flexCenter(column, center, stretch);
     gap: 1rem;
     width: 100%;
+    .container-buscador {
+      @include flexCenter();
+      background-color: $grisBase;
+      padding: 10px;
+      border-radius: 10px;
+      form {
+        width: 600px;
+        max-width: 100%;
+        @include flexCenter(row, center, stretch);
+        input {
+          width: 100%;
+          padding: 5px 10px;
+          border-radius: 5px 0px 0px 5px;
+        }
+        button {
+          @include flexCenter();
+
+          background-color: $azulBase;
+          color: white;
+          &:hover {
+            background-color: darken($azulBase, $amount: 10);
+            transition: all 0.3s ease-in-out;
+          }
+        }
+      }
+    }
     h3 {
       text-align: center;
     }
@@ -15,8 +41,18 @@
       @include flexCenter(column, center, stretch);
       gap: 10px;
       @include telefono {
-        flex-direction: row;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        // flex-direction: row;
+        // flex-wrap: wrap;
+      }
+      @media (min-width: 700px) {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+      }
+      @include desktop {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
       }
     }
   }
