@@ -19,6 +19,7 @@ const AppRouter = () => {
     const observandoAutenticacion = () => {
       onAuthStateChanged(auth, (user) => {
         if (user) {
+          console.log(user);
           const { uid, displayName, email } = user;
           dispatch(login({ uid, email, displayName }));
         }

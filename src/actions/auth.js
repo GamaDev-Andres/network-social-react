@@ -69,10 +69,15 @@ export const login = (user) => ({
 export const startLoginWithGoogle = () => {
   const provider = new GoogleAuthProvider();
 
-  return async () => {
+  return async (dispatch) => {
     try {
-      await signInWithPopup(auth, provider);
+      const response = await signInWithPopup(auth, provider);
+      console.log(response.user);
+      const { displayName, email, photoURL, uid } = response.user;
+      const user = { displayName, email, photoURL, uid };
+      dispatch(createDocUserAction(user));
     } catch (error) {
+      console.log("Error login google");
       console.log(error);
       validatorErrors(error.code);
     }

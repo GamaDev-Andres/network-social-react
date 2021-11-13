@@ -9,18 +9,70 @@
 }
 #main-container-page-home {
   @include flexCenter(row, center, flex-start);
-  padding: 10px 0;
+  padding: 10px;
   gap: 1rem;
   max-width: 940px;
   margin: 0 auto;
   aside {
     width: 400px;
-    min-height: 100px;
+    min-height: 150px;
     position: sticky;
     top: 64px;
     display: none;
+    padding: 10px;
+    overflow-y: scroll;
+    max-height: 100vh;
+    .container-aside {
+      @include flexCenter(column, center, stretch);
+      gap: 10px;
+      .container-sugerencias {
+        @include flexCenter(column, center, stretch);
+        gap: 10px;
+        .no-users {
+          border-radius: 10px;
+          width: 100%;
+          background-color: $grisBase;
+          padding: 1rem;
+          @include flexCenter(column, center, stretch);
+          p {
+            color: black;
+            font-weight: bold;
+            font-size: 1rem;
+            text-align: center;
+          }
+          a {
+            text-align: center;
+            color: $azulBase;
+          }
+        }
+      }
+      h4 {
+        font-size: 1.2rem;
+        text-align: center;
+      }
+    }
     @media (min-width: 768px) {
       display: block;
+      .main-container-sugerencia {
+        @include flexCenter();
+        flex-wrap: nowrap;
+        .container-img-profile {
+          max-width: 45px !important;
+          min-width: 45px;
+        }
+        .container-info-user-sugerencia {
+          a {
+            font-size: 14px;
+          }
+        }
+        .container-buton-sugerencia {
+          button {
+            padding: 5px;
+            font-size: 12px;
+            letter-spacing: 1px;
+          }
+        }
+      }
     }
   }
 }

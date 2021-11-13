@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
@@ -32,7 +32,11 @@ const Sugerencia = ({ user }) => {
       setLoading(true);
     });
   };
-
+  useEffect(() => {
+    return () => {
+      setLoading(true);
+    };
+  }, []);
   return (
     <div className="main-container-sugerencia">
       <div onClick={handleClickRedirect} className="container-img-profile">

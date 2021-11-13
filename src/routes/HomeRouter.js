@@ -32,17 +32,22 @@ const HomeRouter = () => {
       }
     );
 
-    // ESCUCHAR DATA USUARIO
-    const refUser = doc(db, "usuarios", email);
-    const unsubscribeUser = onSnapshot(refUser, (documento) => {
-      const dataUser = documento.data();
-      dispatch(login(dataUser));
-    });
     return () => {
       unsubcribeFriends();
-      unsubscribeUser();
     };
   }, [email, dispatch]);
+
+  // useEffect(() => {
+  //   // ESCUCHAR DATA USUARIO
+  //   const refUser = doc(db, "usuarios", email);
+  //   const unsubscribeUser = onSnapshot(refUser, (documento) => {
+  //     const dataUser = documento.data();
+  //     dispatch(login(dataUser));
+  //   });
+  //   return () => {
+  //     unsubscribeUser();
+  //   };
+  // }, [email, dispatch]);
   if (!auth.displayName) {
     return <h1>loading... por displayname</h1>;
   }

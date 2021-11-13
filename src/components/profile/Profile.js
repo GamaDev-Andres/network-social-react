@@ -6,11 +6,15 @@ import { useSelector, useDispatch } from "react-redux";
 import HeaderProfile from "./HeaderProfile";
 import MainProfile from "./MainProfile";
 import { getUserProfileAction } from "../../actions/profile";
+import { doc, onSnapshot } from "@firebase/firestore";
+import { db } from "../../firebase/credentials";
+import { login } from "../../actions/auth";
 
 const Profile = () => {
   const { uid } = useParams();
   const dispatch = useDispatch();
   const profileVisited = useSelector((state) => state.profileVisited);
+  const { email } = useSelector((state) => state.auth);
   const [checkingUser, setCheckingUser] = useState(true);
 
   useEffect(() => {
@@ -22,6 +26,18 @@ const Profile = () => {
 
     getUser();
   }, [uid, dispatch]);
+
+  useEffect(() => {
+    // ESCUCHAR DATA USUARIO
+    const refUser = doc(db, "usuarios", email);
+    const unsubscribeUser = onSnapshot(refUser, (documento) => {
+      const dataUser = documento.data();
+      dispatch(login(dataUser));
+    });
+    return () => {
+      unsubscribeUser();
+    };
+  }, [email, dispatch]);
 
   if (!checkingUser && !profileVisited) {
     Swal.fire("Error", "Url al que intento acceder no existe", "error");

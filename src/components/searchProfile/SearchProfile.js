@@ -1,19 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 
-import { StartGetAllUsers } from "../../actions/users";
 import Sugerencia from "./Sugerencia";
 import { ImSearch } from "react-icons/im";
 const SearchProfile = () => {
-  const dispatch = useDispatch();
-  const { uid } = useSelector((state) => state.auth);
   const users = useSelector((state) => state.users);
   const [search, setsearch] = useState("");
   const [searchUsers, setsearchUsers] = useState(null);
-  useEffect(() => {
-    dispatch(StartGetAllUsers(uid));
-  }, [dispatch, uid]);
 
   const handleSubmitSearch = (e) => {
     e.preventDefault();
