@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
+import { ImSearch } from "react-icons/im";
 
 import Sugerencia from "./Sugerencia";
-import { ImSearch } from "react-icons/im";
+
 const SearchProfile = () => {
   const users = useSelector((state) => state.users);
   const [search, setsearch] = useState("");
@@ -11,17 +13,31 @@ const SearchProfile = () => {
   const handleSubmitSearch = (e) => {
     e.preventDefault();
     if (search.trim() === "") {
-      setsearchUsers(users);
-      setsearch("");
+      Swal.fire("Error", "El campo no puede estar vacio", "error").then(() => {
+        setsearchUsers(users);
+        setsearch("");
+      });
       return;
     }
-    console.log(search);
+
     const resultsSearch = users.filter((user) =>
-      user.displayName.includes(search)
+      user.displayName.toLowerCase().includes(search.toLowerCase())
     );
+
+    if (resultsSearch.length === 0) {
+      Swal.fire("Error", "No hay coincidencias con su busqueda", "error").then(
+        () => {
+          setsearchUsers(users);
+
+          setsearch("");
+        }
+      );
+      return;
+    }
     setsearchUsers(resultsSearch);
     setsearch("");
   };
+
   return (
     <div className="main-container-searchprofile box">
       <div className="container-search-profile">
@@ -41,11 +57,18 @@ const SearchProfile = () => {
             </button>
           </form>
         </div>
-        <div className="container-sugerencias">
-          {(searchUsers || users).map((user) => (
-            <Sugerencia key={user.uid} user={user} />
-          ))}
-        </div>
+        {users.length > 0 ? (
+          <div className="container-sugerencias">
+            {(searchUsers || users).map((user) => (
+              <Sugerencia key={user.uid} user={user} />
+            ))}
+          </div>
+        ) : (
+          <div className="box posts-empty">
+            <h4>No tenemos usuarios que sugerirte.</h4>
+            <p>Invita a tus amigos a NetBook!</p>
+          </div>
+        )}
       </div>
     </div>
   );

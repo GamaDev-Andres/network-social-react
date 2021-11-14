@@ -13,11 +13,10 @@ import { validador } from "../../helpers/validator";
 import useForm from "../../hooks/useForm";
 
 const initialForm = {
-  name: "andres gama",
-  nacimiento: new Date().getTime(),
-  email: "gama_pipe@hotmail.com",
-  password: "12345678",
-  confirmPassword: "12345678",
+  name: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
 };
 
 const Register = () => {
@@ -32,7 +31,6 @@ const Register = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    // validaciones
     if (!validador("email", email, "email")) {
       return;
     }

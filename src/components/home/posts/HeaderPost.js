@@ -2,19 +2,20 @@ import moment from "moment";
 import "moment/locale/es";
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import Swal from "sweetalert2";
 
 import userEmpty from "../../../assets/userEmpty.jpg";
-import { useDispatch } from "react-redux";
 import { openModal } from "../../../actions/ui";
 import { startDeletePost } from "../../../actions/posts";
-import Swal from "sweetalert2";
 import Options from "../../layout/Options";
 
 const HeaderPost = ({ data }) => {
+  moment.locale("es");
   const { displayName, foto, fechaCreacion, uid, id } = data;
   const history = useHistory();
   const dispatch = useDispatch();
-  moment.locale("es");
+
   const fechaPost = moment(fechaCreacion);
   const fecha = moment(fechaPost).fromNow();
 

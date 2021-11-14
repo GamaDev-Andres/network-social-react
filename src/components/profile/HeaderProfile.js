@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { FaCamera } from "react-icons/fa";
+import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
+import { Button, Spinner } from "react-bootstrap";
 
 import userEmpty from "../../assets/userEmpty.jpg";
 import poster from "../../assets/poster.jpg";
-import { useSelector } from "react-redux";
-import { Button, Spinner } from "react-bootstrap";
-import { useDispatch } from "react-redux";
 import { startAddFriend, startDeleteFriend } from "../../actions/friends";
 
 const HeaderProfile = () => {
@@ -33,6 +33,10 @@ const HeaderProfile = () => {
     });
   };
 
+  const handleChangePoster = () => {
+    Swal.fire("Lo Siento", "Funcionalidad en Desarrollo", "warning");
+  };
+
   return (
     <div className="container-header-profile box">
       <div className="container-fotos">
@@ -40,13 +44,13 @@ const HeaderProfile = () => {
         <div className="container-foto-profile">
           <div>
             <img src={foto || userEmpty} alt="foto de andres gama" />
-            <button>
+            <button className="btn-edit-foto-profile">
               <FaCamera />
             </button>
           </div>
         </div>
         <div className="container-button-poster">
-          <button>
+          <button onClick={handleChangePoster}>
             <FaCamera />
           </button>
         </div>

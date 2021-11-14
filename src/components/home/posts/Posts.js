@@ -11,6 +11,7 @@ const Posts = ({ post }) => {
   const { displayName, foto, id, texto, fechaCreacion, uid } = post;
   const [arrlikes, setArrlikes] = useState([]);
   const [arrComents, setArrComents] = useState([]);
+
   useEffect(() => {
     // escuchar cambios en reacciones del post
     const refCollectionLikes = collection(db, `posts/${id}/likes`);
@@ -27,11 +28,13 @@ const Posts = ({ post }) => {
         setArrComents(arrComentsOfDocs);
       }
     );
+
     return () => {
       unsubscribeComents();
       unsubscribeLikes();
     };
   }, []);
+
   return (
     <div className="container-post box">
       <HeaderPost data={{ displayName, foto, fechaCreacion, uid, id }} />

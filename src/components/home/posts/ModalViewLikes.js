@@ -1,10 +1,11 @@
 import React from "react";
-import { AiOutlineClose } from "react-icons/ai";
 import Modal from "react-modal";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { AiOutlineClose } from "react-icons/ai";
+import { useSelector, useDispatch } from "react-redux";
+
 import { closeModalLikes } from "../../../actions/ui";
 import RowLike from "./RowLike";
+
 Modal.setAppElement("#root");
 
 const ModalViewLikes = () => {

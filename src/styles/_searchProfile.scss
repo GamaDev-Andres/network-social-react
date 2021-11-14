@@ -1,8 +1,9 @@
 .main-container-searchprofile {
-  @include flexCenter();
+  @include flexCenter(row, center, flex-start);
   padding: 1rem;
   margin-top: 1rem;
   max-width: 968px;
+  min-height: 100vh;
   margin: 1rem auto;
   .container-search-profile {
     @include flexCenter(column, center, stretch);
@@ -37,14 +38,18 @@
     h3 {
       text-align: center;
     }
+    .posts-empty {
+      width: 100%;
+      p {
+        text-align: center;
+      }
+    }
     .container-sugerencias {
       @include flexCenter(column, center, stretch);
       gap: 10px;
       @include telefono {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        // flex-direction: row;
-        // flex-wrap: wrap;
       }
       @media (min-width: 700px) {
         display: grid;

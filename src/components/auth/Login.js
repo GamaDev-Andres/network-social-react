@@ -7,8 +7,8 @@ import { startLogin, startLoginWithGoogle } from "../../actions/auth";
 import useForm from "../../hooks/useForm";
 
 const initialForm = {
-  email: "gama_pipe@hotmail.com",
-  password: "12345678",
+  email: "",
+  password: "",
 };
 
 const Login = () => {

@@ -76,3 +76,11 @@ body {
 a {
   text-decoration: none !important;
 }
+
+.spinner-router {
+  @include flexCenter();
+  min-height: 100vh;
+}
+.spinner-grow {
+  margin: 0 auto;
+}

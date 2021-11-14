@@ -3,14 +3,13 @@ import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
 import { collection, onSnapshot } from "@firebase/firestore";
+import Swal from "sweetalert2";
 
-// import RowLike from "./RowLike";
 import RowComent from "./RowComent";
 import { startAddComentInPost } from "../../../actions/posts";
 import { closeModalComents } from "../../../actions/ui";
 import { db } from "../../../firebase/credentials";
 import { mapeoDocsPostsAObjetos } from "../../../helpers/firebase";
-import Swal from "sweetalert2";
 
 Modal.setAppElement("#root");
 
@@ -22,7 +21,6 @@ const ModalViewComents = () => {
   const spanEditable = useRef();
 
   const handleCloseModalComents = () => {
-    console.log("cerrando modal coments");
     dispatch(closeModalComents());
   };
 
@@ -30,8 +28,6 @@ const ModalViewComents = () => {
     e.preventDefault();
 
     if (spanEditable.current.textContent.length > 0) {
-      console.log("entre");
-      console.log(spanEditable.current.textContent);
       dispatch(startAddComentInPost(spanEditable.current.textContent)).then(
         () => {
           spanEditable.current.textContent = "";
@@ -39,6 +35,7 @@ const ModalViewComents = () => {
       );
     }
   };
+
   const handleLengthComent = (e) => {
     if (e.target.textContent.length > 128) {
       Swal.fire(
@@ -46,12 +43,12 @@ const ModalViewComents = () => {
         "El comentario no puede tener mas de 128 caracteres",
         "error"
       ).then(() => {
-        console.log("te pasaste");
         let aux = spanEditable.current.textContent.substring(0, 128);
         e.target.textContent = aux;
       });
     }
   };
+
   useEffect(() => {
     if (openModalComents) {
       const refCollectionComents = collection(

@@ -1,4 +1,3 @@
-// acciones de autenticacion
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
@@ -72,7 +71,6 @@ export const startLoginWithGoogle = () => {
   return async (dispatch) => {
     try {
       const response = await signInWithPopup(auth, provider);
-      console.log(response.user);
       const { displayName, email, photoURL, uid } = response.user;
       const user = { displayName, email, photoURL, uid };
       dispatch(createDocUserAction(user));

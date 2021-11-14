@@ -27,7 +27,6 @@
   width: 100%;
   form {
     width: 100%;
-    // @include flexCenter(column, center, start);
     @include flexCenter(column);
     gap: 10px;
     label {

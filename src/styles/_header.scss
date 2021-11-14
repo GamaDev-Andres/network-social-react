@@ -16,6 +16,10 @@ header {
       padding: 0.625rem 1rem;
       border-radius: 2rem;
       cursor: pointer;
+      @media (max-width: 360px) {
+        padding: 5px;
+        font-size: 14px;
+      }
       &:hover {
         background-color: darken($grisBase, $amount: 5);
         transition: all 0.3s ease-in;

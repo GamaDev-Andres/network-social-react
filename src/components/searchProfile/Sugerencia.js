@@ -32,11 +32,13 @@ const Sugerencia = ({ user }) => {
       setLoading(true);
     });
   };
+
   useEffect(() => {
     return () => {
       setLoading(true);
     };
   }, []);
+
   return (
     <div className="main-container-sugerencia">
       <div onClick={handleClickRedirect} className="container-img-profile">

@@ -1,15 +1,14 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 
 import { auth } from "../../firebase/credentials";
 import userEmpty from "../../assets/userEmpty.jpg";
 import { openModal } from "../../actions/ui";
-import { useHistory } from "react-router";
 
 const Header = () => {
   const { displayName, uid } = useSelector((state) => state.auth);
-  const primerNombre = displayName.split(" ")[0];
+  const primerNombre = displayName?.split(" ")[0];
   const dispatch = useDispatch();
   const history = useHistory();
 

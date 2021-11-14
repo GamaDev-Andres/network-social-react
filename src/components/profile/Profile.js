@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Redirect, useParams } from "react-router";
 import Swal from "sweetalert2";
 import { useSelector, useDispatch } from "react-redux";
+import { doc, onSnapshot } from "@firebase/firestore";
 
 import HeaderProfile from "./HeaderProfile";
 import MainProfile from "./MainProfile";
 import { getUserProfileAction } from "../../actions/profile";
-import { doc, onSnapshot } from "@firebase/firestore";
 import { db } from "../../firebase/credentials";
 import { login } from "../../actions/auth";
 

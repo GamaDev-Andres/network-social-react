@@ -44,6 +44,7 @@ const ModalEditInfo = () => {
   const handleCloseModal = () => {
     dispatch(closeModalInfo());
   };
+
   return (
     <>
       <Modal

@@ -2,6 +2,7 @@ import { onAuthStateChanged } from "@firebase/auth";
 import React, { useEffect, useState } from "react";
 import { Switch, BrowserRouter as Router, Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { Spinner } from "react-bootstrap";
 
 import Register from "../components/auth/Register";
 import { auth } from "../firebase/credentials";
@@ -19,7 +20,6 @@ const AppRouter = () => {
     const observandoAutenticacion = () => {
       onAuthStateChanged(auth, (user) => {
         if (user) {
-          console.log(user);
           const { uid, displayName, email } = user;
           dispatch(login({ uid, email, displayName }));
         }
@@ -32,11 +32,12 @@ const AppRouter = () => {
 
   if (checking) {
     return (
-      <div className="spinner-grow" role="status">
-        <span className="visually-hidden">Loading...</span>
+      <div className="spinner-router">
+        <Spinner animation="border" variant="primary" />
       </div>
     );
   }
+
   return (
     <Router>
       <div>

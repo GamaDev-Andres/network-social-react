@@ -18,23 +18,23 @@ const ModalCreatePost = () => {
 
   const foto = auth.currentUser.photoURL;
   const dispatch = useDispatch();
-
   const { displayName, uid } = useSelector((state) => state.auth);
-  const primerNombre = displayName.split(" ")[0];
+  const primerNombre = displayName?.split(" ")[0];
   const history = useHistory();
   const postsHome = useSelector((state) => state.posts);
   const postsProfile = useSelector((state) => state.profileVisited);
-  if (history.location.pathname === "/") {
-    posts = postsHome;
-  } else {
-    posts = postsProfile?.posts;
-  }
   const { openModal, edit } = useSelector((state) => state.ui);
   const [formValues, setFormValue, reset] = useForm({
     texto: "",
   });
 
   const { texto } = formValues;
+
+  if (history.location.pathname === "/") {
+    posts = postsHome;
+  } else {
+    posts = postsProfile?.posts;
+  }
 
   const handleCloseModal = () => {
     reset({ texto: "" });

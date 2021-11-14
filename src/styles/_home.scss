@@ -2,10 +2,6 @@
   width: 100%;
   max-width: 940px;
   margin: 0 auto;
-  // @media (min-width: 768px) {
-  //   width: 80%;
-  //   margin: 0 auto;
-  // }
 }
 #main-container-page-home {
   @include flexCenter(row, center, flex-start);
@@ -20,7 +16,7 @@
     top: 64px;
     display: none;
     padding: 10px;
-    overflow-y: scroll;
+    overflow-y: auto;
     max-height: 100vh;
     .container-aside {
       @include flexCenter(column, center, stretch);

@@ -1,8 +1,8 @@
 import React from "react";
-import { AiOutlineClose } from "react-icons/ai";
 import Modal from "react-modal";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { AiOutlineClose } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+
 import { closeModalFriends } from "../../actions/ui";
 import Sugerencia from "../searchProfile/Sugerencia";
 
@@ -15,6 +15,7 @@ const ModalFriends = () => {
   const handleCloseModal = () => {
     dispatch(closeModalFriends());
   };
+
   return (
     <>
       <Modal

@@ -79,6 +79,7 @@
 
 .main-container-modal-likes {
   width: 100%;
+  padding: 1rem;
   @include flexCenter(column, center, stretch);
   .container-title {
     button {
@@ -120,5 +121,17 @@
       color: red;
       transition: color 0.3s ease;
     }
+  }
+}
+
+.posts-empty {
+  @include flexCenter(column, center, stretch);
+  gap: 1rem;
+  padding: 1rem;
+  width: 100%;
+  h4 {
+    font-weight: bold;
+    color: $azulBase;
+    text-align: center;
   }
 }

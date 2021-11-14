@@ -7,6 +7,13 @@
   flex-direction: column;
   width: 100%;
   max-width: 940px;
+  h1 {
+    text-align: center;
+    padding: 0px 10px;
+    @media (max-width: 480px) {
+      font-size: 24px;
+    }
+  }
   .container-buton-sugerencia {
     @include flexCenter(row, center, stretch);
     width: 200px;
@@ -70,10 +77,11 @@
       padding: 5px;
       right: 0;
       left: 0;
-      // top: 0;
       bottom: 1rem;
       margin: auto;
-
+      .btn-edit-foto-profile {
+        display: none;
+      }
       div {
         width: 100%;
         max-width: 150px;
@@ -82,7 +90,6 @@
           width: 100%;
           object-fit: cover;
           border-radius: 50%;
-          // clip-path: circle(50% at 50% 50%);
         }
         button {
           position: absolute;
@@ -105,11 +112,13 @@ main.main-profile {
   width: 100%;
   @include flexCenter(column, center, center);
   max-width: 940px;
+  .lateral {
+    width: 100%;
+  }
   @media (min-width: 768px) {
     @include flexCenter(row, center, flex-start);
     .lateral {
       max-width: 400px;
-      // width: 450px;
       max-height: calc(100vh - 50px);
       overflow-y: auto;
       overflow-x: hidden;
@@ -120,7 +129,6 @@ main.main-profile {
   }
   .main-container-posts-profile {
     width: 100%;
-    max-width: calc(940px - 450px);
     .posts-user-profile {
       @include flexCenter(column, center, stretch);
       gap: 1rem;
@@ -184,5 +192,16 @@ main.main-profile {
       width: 100%;
       text-align: center;
     }
+  }
+}
+
+.no-friends {
+  @include flexCenter(column, flex-start, stretch);
+  width: 100%;
+  padding: 1rem;
+  min-height: 200px;
+  gap: 10px;
+  p {
+    margin: 0;
   }
 }

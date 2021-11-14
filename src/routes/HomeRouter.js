@@ -1,10 +1,10 @@
-import { collection, doc, onSnapshot } from "@firebase/firestore";
+import { collection, onSnapshot } from "@firebase/firestore";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, Route, Switch } from "react-router";
-import { login } from "../actions/auth";
 
 import { addFriendAction } from "../actions/friends";
+import { StartGetAllUsers } from "../actions/users";
 import Home from "../components/home/Home";
 import ModalCreatePost from "../components/home/posts/ModalCreatePost";
 import ModalViewComents from "../components/home/posts/ModalViewComents";
@@ -17,9 +17,8 @@ import { db } from "../firebase/credentials";
 import { mapeoDocsPostsAObjetos } from "../helpers/firebase";
 
 const HomeRouter = () => {
-  const { email } = useSelector((state) => state.auth);
+  const { email, uid } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
 
   useEffect(() => {
     // ESCUCHANDO AMIGOS
@@ -37,20 +36,10 @@ const HomeRouter = () => {
     };
   }, [email, dispatch]);
 
-  // useEffect(() => {
-  //   // ESCUCHAR DATA USUARIO
-  //   const refUser = doc(db, "usuarios", email);
-  //   const unsubscribeUser = onSnapshot(refUser, (documento) => {
-  //     const dataUser = documento.data();
-  //     dispatch(login(dataUser));
-  //   });
-  //   return () => {
-  //     unsubscribeUser();
-  //   };
-  // }, [email, dispatch]);
-  if (!auth.displayName) {
-    return <h1>loading... por displayname</h1>;
-  }
+  useEffect(() => {
+    dispatch(StartGetAllUsers(uid));
+  }, [dispatch, uid]);
+
   return (
     <div>
       <Nav />
