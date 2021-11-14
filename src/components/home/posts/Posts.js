@@ -33,7 +33,7 @@ const Posts = ({ post }) => {
       unsubscribeComents();
       unsubscribeLikes();
     };
-  }, []);
+  }, [id]);
 
   return (
     <div className="container-post box">

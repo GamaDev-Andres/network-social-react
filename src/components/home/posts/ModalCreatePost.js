@@ -62,7 +62,7 @@ const ModalCreatePost = () => {
     } else {
       reset({ texto: "" });
     }
-  }, [edit]);
+  }, [edit, reset, posts]);
 
   return (
     <>
