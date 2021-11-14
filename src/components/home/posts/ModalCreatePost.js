@@ -27,7 +27,6 @@ const ModalCreatePost = () => {
   const [formValues, setFormValue, reset] = useForm({
     texto: "",
   });
-
   const { texto } = formValues;
 
   if (history.location.pathname === "/") {
@@ -62,7 +61,8 @@ const ModalCreatePost = () => {
     } else {
       reset({ texto: "" });
     }
-  }, [edit, reset, posts]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [edit]);
 
   return (
     <>
