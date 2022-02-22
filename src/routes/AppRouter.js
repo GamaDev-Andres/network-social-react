@@ -1,6 +1,6 @@
 import { onAuthStateChanged } from "@firebase/auth";
 import React, { useEffect, useState } from "react";
-import { Switch, BrowserRouter as Router, Redirect } from "react-router-dom";
+import { Switch, HashRouter as Router, Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Spinner } from "react-bootstrap";
 

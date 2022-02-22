@@ -43,10 +43,6 @@ const SectionInforProfile = () => {
               Se unio en <strong>{fechaCreacion}</strong>
             </span>
           </div>
-          <div className="correo">
-            <MdEmail />
-            <span>{user.email}</span>
-          </div>
         </div>
         <Options uid={uid}>
           <div onClick={handleOpenModalEdit} className="option-edit">
