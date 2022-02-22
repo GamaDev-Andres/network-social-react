@@ -7,7 +7,7 @@ import Posts from "../home/posts/Posts";
 import Header from "../layout/Header";
 
 const SectionPostsProfile = () => {
-  const { posts } = useSelector((state) => state.profileVisited);
+  const { posts, displayName } = useSelector((state) => state.profileVisited);
   const auth = useSelector((state) => state.auth);
   const { uid } = useParams();
 
@@ -27,7 +27,7 @@ const SectionPostsProfile = () => {
             <h4>
               {auth.uid === uid
                 ? "Aún no has publicado algo."
-                : `${auth.displayName} aún no ha publicado algo.`}
+                : `${displayName} aún no ha publicado algo.`}
             </h4>
             {auth.uid === uid && <p>realiza tu primer post!!</p>}
           </div>
