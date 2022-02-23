@@ -1,7 +1,7 @@
 import React from "react";
 import { ImHome2 } from "react-icons/im";
 import { AiFillHeart } from "react-icons/ai";
-import { MdAccessTimeFilled, MdEmail } from "react-icons/md";
+import { MdAccessTimeFilled } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 
